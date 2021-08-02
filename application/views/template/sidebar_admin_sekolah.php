@@ -2,9 +2,9 @@
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-      <img src="<?=base_url()?>assets/img/favicon.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="<?=base_url()?>assets22/img/favicon.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light"><b style="font-size:15px;">PPDB DARING BIREUEN</b></span>
+      <span class="brand-text font-weight-light font-weight-bold"><b style="font-size:15px;">SIM BPP SSB BIREUEN</b></span>
     </a>
 
     <!-- Sidebar -->
@@ -12,10 +12,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?php echo base_url()?>assets/img/team/tutwuri.png" class="img-circle elevation-2" alt="User Image">
+          <img src="<?php echo base_url()?>asset/dist/img/adit.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block"><?php echo $approve_formulir; ?></a>
+          <a href="#" class="d-block font-weight-bold"><?php echo $nama_user; ?></a>
         </div>
       </div>
 
@@ -26,7 +26,7 @@
                with font-awesome or any other icon font library -->
                <li class="nav-item ">
             <a href="<?=base_url('admin');?>" class="nav-link">
-              <i class="nav-icon fa fa-tachometer-alt"></i>
+              <i class="nav-icon fa fa-home"></i>
               <p>
                 Dashboard
               </p>
@@ -34,68 +34,13 @@
           </li>
 
           <li class="nav-item ">
-            <a href="<?=base_url('admin/zonasi/'.$id_pesertadidik);?>" class="nav-link">
-              <i class="nav-icon fa fa-map-marked-alt"></i>
+            <a href="<?=base_url('admin/data_bpp/');?>" class="nav-link">
+              <i class="nav-icon fa fa-money-check-alt"></i>
               <p>
-                Zonasi
+               Data BPP
               </p>
             </a>
-          </li>
-
-
-          <!-- <li class="nav-item ">
-            <a href="<?=base_url('admin/kuota');?>" class="nav-link">
-              <i class="nav-icon fa fa-tasks"></i>
-              <p>
-                Kuota
-              </p>
-            </a>
-          </li> -->
-
-          <li class="nav-item ">
-            <a href="<?=base_url('admin/approve_formulir');?>" class="nav-link">
-              <i class="nav-icon fa fa-clipboard-check"></i>
-              <p>
-                Approve Formulir
-              </p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a href="<?=base_url('admin/approve_lulus');?>" class="nav-link">
-              <i class="nav-icon fa fa-building"></i>
-              <p>
-                Approve Kelulusan
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item ">
-            <a href="<?=base_url('admin/approve_daftarulang');?>" class="nav-link">
-              <i class="nav-icon fa fa-user-check"></i>
-              <p>
-                Approve Daftar Ulang
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item ">
-            <a href="<?=base_url('admin/status_finalisasi');?>" class="nav-link">
-              <i class="nav-icon fa fa-calendar-check"></i>
-              <p>
-                Ubah Status Finalisasi
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item ">
-            <a href="<?=base_url('admin/ganti_password/'.$id_pesertadidik);?>" class="nav-link">
-              <i class="nav-icon fa fa-key"></i>
-              <p>
-                Ganti Password
-              </p>
-            </a>
-          </li>
-         
+          </li>         
 
           <li class="nav-item">
             <a href="<?= base_url('admin/logout')?>" class="nav-link bg-danger">

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  <link href="<?=base_url()?>assets/img/favicon.png" rel="icon">
+  <link href="<?=base_url()?>assets22/img/favicon.png" rel="icon">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,35 +12,34 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'login.css';?>">
     <script src="https://kit.fontawesome.com/2d7830743a.js" crossorigin="anonymous"></script>
 
-    <title>PPDB ONLINE BIREUEN</title>
+    <title>LOGIN SIM BPP</title>
   </head>
   <div class="limiter">
-  <body style="background-image: url(<?php echo base_url('assets/img/testimonials-bg2.jpeg');?>);background-size: cover;}">
+  <body style="background-image: url(<?php echo base_url('assets22/img/bg.jpg');?>);background-size: cover;}">
   <div class="container">
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card card-signin my-5">
           <div class="card-body">
-            <img src="<?=base_url()?>assets/img/favicon.png" class="mx-auto d-block" width="100px">
-            <h6 class="text-center" style="margin-top:5px;"><b>PPDB DARING<br>DISDIKBUD KAB. BIREUEN<br>TA.2021/2022</b></h6><br>
-            <h5 class="text-center"><b>LOGIN SISWA</b></h5>
+            <img src="<?=base_url()?>assets22/img/favicon.png" class="mx-auto d-block" width="100px">
+            <h6 class="text-center" style="margin-top:5px;"><b>SISTEM INFORMASI MANAJEMEN<br>BPP PESERTA DIDIK<br>SUKMA BANGSA BIREUEN</b></h6><br>
+            <h5 class="text-center"><b>LOGIN ADMIN TU</b></h5>
 
             <?php echo form_open('hal/login_aksi');?>
               <div class="form-label-group">
                 <input  name="username" id="inputEmail" class="form-control"  required autofocus>
-                <label for="inputEmail">NIK/USERNAME</label>
+                <label for="inputEmail">USERNAME</label>
               </div>
 
               <div class="form-label-group">
                 <input name="password" type="password" id="inputPassword" class="form-control" required>
-                <label for="inputPassword">NISN/PASSWORD</label>
+                <label for="inputPassword">PASSWORD</label>
               </div>
-              <div class="form-label-group">
-              <input type="checkbox" onclick="myFunction()" id="show"> Tampil Password
-              </div>
-
-              <button class="btn btn-lg text-light btn-block text-uppercase font-weight-bold rounded-pill" type="submit" style="background-color:#FF0064;"><b>Login</b></button>
+              <button class="btn btn-lg text-light btn-block text-uppercase font-weight-bold rounded-pill btn-info" type="submit"><b>Login</b></button>
               <?php echo form_close();?>
+              <div class="text-center mt-3 font-weight-bold">
+              <a class="text-decoration-none" href="<?=base_url()?>">KEMBALI KE HALAMAN UTAMA</a>
+              </div>
             </div>
         </div>
       </div>

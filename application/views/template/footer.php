@@ -1,5 +1,5 @@
 <footer class="main-footer no-print">
-    <strong>Copyright &copy; 2021 <a href="#">Disdikbud Kab. Bireuen</a>.</strong>
+    <strong>Copyright &copy; 2021 <a href="#">Pusdatin Sekolah Sukma Bangsa Bireuen</a>.</strong>
     All rights reserved
   </footer>
 
@@ -73,9 +73,9 @@ $(document).ready(function() {
     $('#example').DataTable( {
         dom: 'Bfrtip',
         buttons: [
-            {extend:'excel',title: 'PPDB Daring Kab. Bireuen',className: 'btn btn-primary'}, 
-            {extend:'pdf',title: 'PPDB Daring Kab. Bireuen',className: 'btn btn-primary'}, 
-            {extend:'print',title: 'PPDB Daring Kab. Bireuen',className: 'btn btn-primary'} 
+            {extend:'excel',title: 'Sistem Informasi Manajemen BPP',className: 'btn btn-primary'}, 
+            {extend:'pdf',title: 'Sistem Informasi Manajemen BPP',className: 'btn btn-primary'}, 
+            {extend:'print',title: 'Sistem Informasi Manajemen BPP',className: 'btn btn-primary'} 
         ]
     } );
 } );

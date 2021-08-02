@@ -11,10 +11,10 @@
 </script>
 
 <head>
-<link href="<?=base_url()?>assets/img/favicon.png" rel="icon">
+<link href="<?=base_url()?>assets22/img/favicon.png" rel="icon">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>PPDB ONLINE BIREUEN</title>
+  <title>SIM BPP SSB BIREUEN</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -61,7 +61,7 @@
    
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-    <p class="text-sm font-weight-bold font-italic">Permendikbud RI No. 1 Tahun 2021 Tentang Penerimaan Peserta Didik Baru</p>
+    <p class="text-sm font-weight-bold font-italic">Sistem Informasi Manajemen BPP Sekolah Sukma Bangsa Bireuen</p>
       </li>
     </ul>
   </nav>

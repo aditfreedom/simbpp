@@ -21,6 +21,12 @@ class M_ppdb extends CI_Model
         return $this->db->query("SELECT * FROM data_smp");
     }
 
+    public function tampil_data_bpp()
+    {
+        return $this->db->query("SELECT * FROM data");
+    }
+
+
     public function tampilsekolah()
     {
         return $this->db->query("SELECT * FROM data_smp 
@@ -182,6 +188,11 @@ class M_ppdb extends CI_Model
         return $result->num_rows();
     }
 
+    public function tambah_data($data,$table)
+    {
+        $this->db->insert($table, $data);
+    }
+
     public function tambahkuota($data)
     {
         $this->db->insert('kuota_siswa', $data);
@@ -228,6 +239,12 @@ class M_ppdb extends CI_Model
         return $this->db->get_where('kuota', $id);
     }
 
+    public function edit_bpp($id)
+    {
+        return $this->db->get_where('data', $id);
+    }
+
+
     public function edit_sekolah($id)
     {
         return $this->db->get_where('pengguna', $id);
@@ -239,6 +256,14 @@ class M_ppdb extends CI_Model
         $this->db->set($data);
         $this->db->update('kuota_siswa');
     }
+
+    public function update_bpp($where, $data,$table)
+    {
+        $this->db->where($where);
+        $this->db->set($data);
+        $this->db->update($table);
+    }
+
 
     public function update_sekolah($where, $data)
     {
@@ -821,9 +846,12 @@ LEFT JOIN data_sd ON datasiswa.id_sekolah = data_sd.id_sekolah WHERE pengguna.id
 
     function cek_login_user($username, $password)
     {
-        return $this->db->query("SELECT * FROM pengguna
-        LEFT JOIN datasiswa ON pengguna.id_pesertadidik = datasiswa.id_pesertadidik
-        where pengguna.username='$username' AND pengguna.password='$password'");
+        return $this->db->query("SELECT * FROM user where username='$username' AND password='$password'");
+    }
+
+    function cek_nis($nis)
+    {
+        return $this->db->query("SELECT * FROM data where nis='$nis'");
     }
 
     function cek_login_dinas($username, $password)

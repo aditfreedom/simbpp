@@ -30,24 +30,9 @@ class Admin extends CI_Controller {
 	{
 		$this->load->model('M_ppdb');
 		$sess_data = $this->session->userdata();
-		$datauser = $this->session->userdata('id_pesertadidik'); 
-		$data['kuota'] = $this->M_ppdb->tampilkuota($datauser)->result();
-		$data['zonasi'] = $this->M_ppdb->tampilzonasi($datauser);
-		$data['afirmasi'] = $this->M_ppdb->tampilafirmasi($datauser);
-		$data['pindahan'] = $this->M_ppdb->tampilpindahan($datauser);
-		$data['prestasi'] = $this->M_ppdb->tampilprestasi($datauser);
-		$data['umum'] = $this->M_ppdb->tampilumum($datauser);
-		$data['formulirapprove'] = $this->M_ppdb->tampilformulirapprove($datauser);
-		$data['siswalulus'] = $this->M_ppdb->tampilsiswalulus($datauser);
-		$data['siswadaftarulang'] = $this->M_ppdb->tampilsiswadaftarulang($datauser);
-		$data['pendaftar'] = $this->M_ppdb->tampilpendaftar($datauser);
-
-
-
-
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
-		$this->load->view('dashboard',$data);
+		$this->load->view('dashboard');
 		$this->load->view('template/footer');
 
 
@@ -81,6 +66,78 @@ class Admin extends CI_Controller {
 		$this->load->view('kuota',$data);
 		$this->load->view('template/footer');
 	}
+
+	public function data_bpp()
+	{
+		$data['bpp'] = $this->M_ppdb->tampil_data_bpp()->result();
+		$sess_data = $this->session->userdata();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('data_bpp',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function insert_bpp()
+	{
+			$data = array(
+			'nis' => $this->input->post('nis'),
+			'nama' => $this->input->post('nama'),
+			'kelas' => $this->input->post('kelas'),
+			'jenjang' => $this->input->post('jenjang'),
+			'status' => $this->input->post('status'),
+			'keterangan' => $this->input->post('keterangan')
+		);
+	
+		$cek_nis = $this->M_ppdb->cek_nis($this->input->post('nis'))->num_rows();
+
+		if ($cek_nis>0) {
+			$this->load->view('gagal_nis');
+		}else{
+			$this->M_ppdb->tambah_data($data,'data');
+			$this->load->view('berhasil_bpp');
+		}
+
+	}
+
+	public function update_bpp(){
+
+		$data = array(
+			'nama' => $this->input->post('nama'),
+			'kelas' => $this->input->post('kelas'),
+			'jenjang' => $this->input->post('jenjang'),
+			'kelas' => $this->input->post('kelas'),
+			'status' => $this->input->post('status'),
+			'keterangan' => $this->input->post('keterangan')
+		);
+		
+	
+		$where = array(
+			'nis' => $this->input->post('nis')
+		);
+	
+		$this->M_ppdb->update_bpp($where,$data,'data');
+		$this->load->view('berhasil_ubah_bpp');
+	}
+
+	public function edit_bpp($id){
+		$sess_data = $this->session->userdata();
+		$nis =    array ('nis' => $id);
+		$data['edit_bpp'] = $this->M_ppdb->edit_bpp($nis)->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('edit_bpp',$data);
+		$this->load->view('template/footer');
+	}
+
+
+	public function tambah_bpp(){
+		$sess_data = $this->session->userdata();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('tambah_bpp');
+		$this->load->view('template/footer');
+	}
+
 
 	public function tambahkuota(){
 		$jenis           = $this->input->post('jenis');
@@ -649,7 +706,7 @@ class Admin extends CI_Controller {
 
 		public function logout(){
 			$this->session->sess_destroy();
-			redirect(base_url('dinas/login'));    
+			redirect(base_url('hal/login'));    
 		}
 
 }

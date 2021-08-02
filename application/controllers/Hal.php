@@ -31,10 +31,9 @@ class Hal extends CI_Controller {
              $cekloginid = $this->M_ppdb->cek_login_user($username,$password)->result();
              if ($ceklogin == 1) {
                  foreach ($cekloginid as $cek) {
-                     $id = $cek->id_pesertadidik;
-                     $nama_lengkap = $cek->nama_siswa;
+                     $id_user = $cek->id_user;
+                     $nama_user = $cek->nama_user;
                      $role = $cek->role;
-                     $status = $cek->status;
                      $username = $cek->username;
                      $password = $cek->password;
                     }
@@ -43,18 +42,19 @@ class Hal extends CI_Controller {
                      $sess_data =  array(
                          'username' => $username,
                          'password' => $password,
-                         'id_pesertadidik' => $id,
-                         'nama_siswa' => $nama_lengkap,
+                         'nama_user' => $nama_user,
+                         'id_user' => $id_user,
                          'role' => $role,
-                         'status' => $status,
                          'login' => 'Berhasil'              
                         );
+
+                        print_r($sess_data);
  
                 //  redirect(base_url('home'));
 
-                if ($sess_data['role'] == "2"){
+                if ($sess_data['role'] == "0"){
                     $this->session->set_userdata($sess_data); 
-                    redirect(base_url('user')); 
+                    redirect(base_url('admin')); 
                  }
                  else{
                     $this->load->view('gagallogin');

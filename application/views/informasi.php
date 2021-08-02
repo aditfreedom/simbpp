@@ -51,7 +51,7 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li class="active"><a href="<?=base_url()?>">Beranda</a></li>
-          <li><a href="<?=base_url()?>">LOGIN ADMIN</a></li>
+          <li><a href="<?=base_url('hal/login')?>">LOGIN ADMIN</a></li>
 
         </ul>
       </nav><!-- .nav-menu -->
