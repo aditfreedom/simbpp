@@ -163,6 +163,12 @@ class Admin extends CI_Controller {
 		redirect(base_url('home/kuota'));
 	}
 
+	public function hapus_bpp($id){
+		$nis =    array ('nis' => $id);
+		$this->M_ppdb->hapususer($nis,'data');
+		redirect(base_url('admin/data_bpp'));
+	}
+
 	public function editkuota($id){
 		$sess_data = $this->session->userdata();
 		$id =    array ('id' => $id);

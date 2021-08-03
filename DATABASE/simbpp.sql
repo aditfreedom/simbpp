@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Agu 2021 pada 16.24
--- Versi server: 10.4.18-MariaDB
--- Versi PHP: 7.4.16
+-- Waktu pembuatan: 03 Agu 2021 pada 10.11
+-- Versi server: 10.4.14-MariaDB
+-- Versi PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -46,7 +46,8 @@ INSERT INTO `data` (`nis`, `nama`, `kelas`, `jenjang`, `status`, `keterangan`) V
 ('10195006', 'AHYA JAZIRA', 'XI Oxford', '', 'BELUM LUNAS', ''),
 ('10195007', 'ATHIRAH AFRA', 'XI Oxford', '', 'BELUM LUNAS', ''),
 ('10195008', 'AZIZURRAHMAN', 'XI Cambridge', '', 'BELUM LUNAS', ''),
-('10195009', 'AZKYA KAMILA MAHARANI', 'XI Cambridge', '', 'LUNAS', ''),
+('10195009', 'AZKYA KAMILA MAHARANI', 'XI Cambridge', 'SMA', 'LUNAS', ''),
+('1019500X', 'Aditya Aziz Fikhri', 'VII Horizon', 'SMP', 'LUNAS', 'Januari 2021 - Juni 2021'),
 ('10195010', 'EDRIC FELICIO', 'XI Cambridge', '', 'LUNAS', ''),
 ('10195011', 'EM BRYPO BAGINDA', 'XI Oxford', '', 'BELUM LUNAS', ''),
 ('10195012', 'FERIZAL', 'XI Cambridge', '', 'LUNAS', ''),
@@ -127,8 +128,7 @@ INSERT INTO `data` (`nis`, `nama`, `kelas`, `jenjang`, `status`, `keterangan`) V
 ('10205055', 'Ziaul Mubaraq', 'X Cornell', '', 'BELUM LUNAS', ''),
 ('10205056', 'MUHAMMAD HAFIZ', 'X Princeton', '', 'BELUM LUNAS', ''),
 ('10205057', 'CUT HIKMA SARI', 'XI Oxford', '', 'BELUM LUNAS', ''),
-('10215002', 'Renold Ferdian Saputra', 'X Monash', '', 'LUNAS', ''),
-('12345', 'Aditya Aziz Fikhri, S.Tr.Kom., MT', 'XII IPA', 'SMA', 'LUNAS', '--');
+('10215002', 'Renold Ferdian Saputra', 'X Monash', '', 'LUNAS', '');
 
 -- --------------------------------------------------------
 
@@ -149,7 +149,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nama_user`, `username`, `password`, `role`) VALUES
-(1, 'ADMINISTRATOR TU', 'tatausaha', 'sukma2021', 0);
+(1, 'ADMINISTRATOR TU', 'tatausaha', '0eab68759cc784399fa5c6ba986cdb3d', 0),
+(2, 'INDRA SAPUTRA, S.E', '10081045', '272fccee2682565378fb775496b50155', 0),
+(3, 'SITI DEA SATIFA, S.ST', '10161002', '467b481876db1758d9b38a75aabbccdb', 0);
 
 --
 -- Indexes for dumped tables
@@ -175,7 +177,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

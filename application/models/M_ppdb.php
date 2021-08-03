@@ -229,6 +229,11 @@ class M_ppdb extends CI_Model
         $this->db->delete('kuota_siswa', $id);
     }
 
+    public function hapususer($id)
+    {
+        $this->db->delete('data', $id);
+    }
+
     public function hapus_sekolah($id)
     {
         $this->db->delete('pengguna', $id);

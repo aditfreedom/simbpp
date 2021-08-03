@@ -45,7 +45,8 @@
             <td><?php echo $data->jenjang; ?></td>
             <td><?php echo $data->status; ?></td>
             <td><?php echo $data->keterangan; ?></td>
-            <td><?php echo anchor('admin/edit_bpp/'.$data->nis,'<div class="btn btn-primary btn-sm text-bold">EDIT DATA</div>')?></td>
+            <td><?php echo anchor('admin/edit_bpp/'.$data->nis,'<div class="btn btn-primary btn-sm text-bold">EDIT DATA</div>')?> 
+            <?php echo anchor('admin/hapus_bpp/'.$data->nis,'<div class="btn btn-danger btn-sm text-bold">HAPUS DATA</div>')?></td>
           </tr>
           <?php $i++; ?>
         <?php endforeach; ?>

@@ -69,7 +69,7 @@
             <h1>Sistem Informasi Manajemen<span> <br>BPP Peserta Didik</span></h1>
             <h2>Sekolah Sukma Bangsa Bireuen</h2>
             <div class="text-center text-lg-left">
-              <a href="<?=base_url('hal/cari')?>" class="btn-get-started scrollto">CETAK KARTU UJIAN</a>
+              <a href="<?=base_url('hal/cari2')?>" class="btn-get-started scrollto">CETAK KARTU UJIAN</a>
               <a href="<?=base_url('hal/cari')?>" class="btn-get-started2 scrollto">CEK BPP</a>
 
             </div>
@@ -129,7 +129,7 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer">
+  <footer id="footer" class="fixed-bottom">
 
     <div class="container">
       <div class="copyright">

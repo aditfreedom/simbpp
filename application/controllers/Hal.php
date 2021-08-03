@@ -19,7 +19,7 @@ class Hal extends CI_Controller {
 
     public function login_aksi(){
         $username = $this->input->post('username',true);
-        $password = $this->input->post('password',true);
+        $password = md5($this->input->post('password',true));
  
         $this->form_validation->set_rules('username','Username','required');
         $this->form_validation->set_rules('password','Password','required');
@@ -75,6 +75,11 @@ class Hal extends CI_Controller {
 		$this->load->view('registrasi');
 	}
 
+    public function cari2()
+	{
+		$this->load->view('registrasi2');
+	}
+
     public function tambahuser(){
 		$id_pesertadidik       = $this->input->get('hsh');
 		$username           = $this->input->get('nik');
@@ -118,6 +123,17 @@ class Hal extends CI_Controller {
             $this->load->view('data_tidak_ditemukan');    
         }else {
             $this->load->view('cariuser',$data);
+        }
+
+	}
+
+    public function cariuser2(){
+		$nisn       = $this->input->get('nisn');
+        $data['cariuser'] = $this->M_ppdb->tampilsiswa($nisn,'datasiswa')->result();
+        if ($data['cariuser']==null) {
+            $this->load->view('data_tidak_ditemukan');    
+        }else {
+            $this->load->view('cariuser2',$data);
         }
 
 	}

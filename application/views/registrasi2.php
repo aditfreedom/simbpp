@@ -67,13 +67,13 @@
   
     <div class="container text-center">
     <br>
-<h3 class="text-dark" style="margin-top:10px;">CEK STATUS BPP<br>CARI DATA SISWA</h3>
+<h3 class="text-dark" style="margin-top:10px;">CARI DATA SISWA</h3>
 <hr>
 </div>
 <br>
     <div class="container">
-    <a href="#" class="btn btn-danger rounded-pill text-left" style="width:100%"><b>ISI NIS UNTUK PROSES PENCARIAN DATA</b></a><br><br>
-    <form action="<?=base_url('hal/cariuser')?>" method="get">
+    <a href="#" class="btn btn-danger rounded-pill text-left" style="width:100%"><b>ISI NIS UNTUK PROSES CETAK KARTU</b></a><br><br>
+    <form action="<?=base_url('hal/cariuser2')?>" method="get">
     <div class="form-group">
         <label for=""><b>NIS</b></label>
         <input type="text" name="nisn" class="form-control" placeholder="Isi NIS" maxlength="16" required>

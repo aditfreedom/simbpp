@@ -1,3 +1,4 @@
+ 
 <!doctype html>
 <html lang="en">
   <head>
@@ -75,56 +76,161 @@
     <?php foreach ($cariuser as $data) : ?>
     <?php
     $status = $data->status;  
+    $jenjang = $data->jenjang;  
     $hidden ="";
-    if ($status=="LUNAS") {
+    if ($status=="LUNAS" ) {
       $hidden ="";
-      $box ="";
-      $class="btn btn-success";
-      $alert="alert-success";
+      $box ="hidden";
     }else {
-      $hidden="";
+      $hidden="hidden";
       $box="";
-      $alert="alert-danger";
-      $class="btn btn-danger";
     }
+
+    if ($jenjang == "SMA") {
+      $jenjangsma="";
+      $jenjangsmp="hidden";
+      $jenjangsd="hidden";
+
+    }elseif ($jenjang == "SMP") {
+      $jenjangsma="hidden";
+      $jenjangsmp="";
+      $jenjangsd="hidden";  }
+      else {
+        $jenjangsma="hidden";
+        $jenjangsmp="hidden";
+        $jenjangsd="";
+                }
+
     ?>
 
-<div <?=$box;?> class="alert <?=$alert?>" role="alert">
-<b>STATUS BPP ANDA :</b><br><br>
-<table class="table table-bordered table-dark text-center">
-          <thead>
-            <tr>
-              <th scope="col">NIS</th>
-              <th scope="col">NAMA</th>
-              <th scope="col">KELAS</th>
-              <th scope="col">JENJANG</th>
-              <th scope="col">STATUS</th>
-              <th scope="col">KETERANGAN TUNGGAKAN</th>
-            </tr>
-          </thead>
-          <tbody>
-<?php foreach ($cariuser as $data) : ?>
-            <td><?=$data->nis;?></td>
-            <td><?=$data->nama;?></td>
-            <td><?=$data->kelas;?></td>
-            <td><?=$data->jenjang;?></td>
-            <td><a class="<?=$class?> font-weight-bold"><?=$data->status;?></a></td>
-            <td><?=$data->keterangan;?></td>
-<?php endforeach;?>
-          </tbody>
-          </table>
+<div <?=$box;?> class="alert alert-danger" role="alert">
+<b>GAGAL MENCETAK KARTU</b><br>
+<ul><b>
+<li>Mohon maaf kartu ujian belum bisa dicetak. Silahkan melakukan pembayaran BPP hingga bulan Juni 2021.</li>
+<li>Ananda tidak dapat mengakses E-Learning bila kartu ujian tidak muncul</li>
+<li>Apabila sudah lunas namun belum bisa mencetak kartu ujian, harap menghubungi Bagian tata Usaha untuk melakukan konfirmasi.</li>
+Terima Kasih. </b>
+
+</ul>
+
 </div>
 
-              <div class="text-center mt-3 font-weight-bold">
-              <a class="btn btn-primary text-decoration-none font-weight-bold" href="<?=base_url('hal/cari')?>">CARI DATA KEMBALI</a> 
-              <a class="btn btn-dark text-decoration-none font-weight-bold" href="<?=base_url()?>">KEMBALI KE HALAMAN UTAMA</a>
-              </div>
+    <div <?=$hidden;?> style="border: 1px solid black;width:602px;">
 
+    <table style="undefined;table-layout: fixed; width: 601px; background: url('<?=base_url()?>/assets22/img/favicon2.png');  background-size: 600px 400px;" >
+<colgroup>
+<col style="width: 89px">
+<col style="width: 27px">
+<col style="width: 177px">
+<col style="width: 208px">
+</colgroup>
+<thead style="border-bottom: 1px solid black;">
+  <tr >
+    <th style="border-right: 1px solid black;" colspan="2" rowspan="3" class="text-center"><img src="<?=base_url()?>assets22/img/favicon.png" alt="" width="80px"><h2 class="logo mr-auto"></img>
+</th>
+    <th colspan="2" class="text-center" >UJIAN AKHIR SEMESTER<br>SMA SUKMA BANGSA BIREUEN<br>TP. 2021/2022</th>
+  </tr>
+  <tr>
+    <td colspan="2"  class="text-center"><b></b></td>
+  </tr>
+  <tr>
+    <td colspan="2"  class="text-center"><b></b></td>
+  </tr>
+</thead>
+<tbody>
+  <tr height="50px">
+    <td colspan="2"></td>
+    <td colspan="2"  class="text-center"><b><u>KARTU PESERTA UJIAN</u></b></td>
+  </tr>
+  <tr >
+    <td>&nbsp;NAMA</td>
+    <td>:</td>
+    <td colspan="2"><b><?=$data->nama;?></b></td>
+  </tr>
+  <tr>
+    <td>&nbsp;NIS</td>
+    <td>:</td>
+    <td colspan="2"><b><?=$data->nis;?></b></td>
+  </tr>
+  <tr>
+    <td>&nbsp;JENJANG</td>
+    <td>:</td>
+    <td colspan="2"><b><?=$data->jenjang;?></b></td>
+  </tr>
+  <tr>
+    <td>&nbsp;KELAS</td>
+    <td>:</td>
+    <td colspan="2"><b><?=$data->kelas;?></b></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Bireuen, 06 Desember 2021</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Kepala Sekolah,</td>
+  </tr>
+  <tr>
+    <td colspan="4" rowspan="2"></td>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><img src="<?=base_url()?>assets22/img/sign.png" alt="" width="60px"><br><b <?=$jenjangsma;?>><u>KARTIKA HAKIM, M.A.</u></b><b <?=$jenjangsmp;?>><u>CHANDRA NURMANSYAH, S.Si</u></b><b <?=$jenjangsd;?>><u>MARINA NOVA WAHYUNI, S.T</u></b></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td <?=$jenjangsma;?>>NIP. 10151003</td><td <?=$jenjangsmp;?>>NIP. 10101064</td><td <?=$jenjangsd;?>>NIP. 12101107</td>
+  </tr>
+</tbody>
+</table>
     </div>
+
+    <!-- <div class="row">
+    <div class="col">
+    <div class="container">
+        <div class="form-group">
+        <label for=""><b>NAMA : </b></label>
+        <h2 class="text-uppercase"><?php echo $data->nama;?></h2>
+        </div>  
+        <div class="form-group">
+        <label for=""><b>NIS :</b></label>
+        <h2><?php echo $data->nis;?></h2>
+        </div>  
+        <div class="form-group">
+        <label for=""><b>KELAS :</b></label>
+        <h2 class="text-uppercase"><?php echo $data->kelas;?></h2>
+        </div>  
+        </div>    
+        </div> -->
 
   
   <?php endforeach ;?>
 
+  <br><br>
+        <a onclick="window.print();" <?=$hidden;?> class="btn btn-primary font-weight-bold d-print-none" style="width:100%;">CETAK KARTU</a>
+
+        <div class="text-center mt-3 font-weight-bold">
+              <a class="d-print-none btn btn-danger text-decoration-none font-weight-bold" style="width:50%;" href="<?=base_url('hal/cari2')?>">CARI DATA KEMBALI</a>
+              <a class="d-print-none btn btn-success text-decoration-none font-weight-bold" style="width:49%;" href="<?=base_url()?>">KEMBALI KE HALAMAN UTAMA</a>
+              </div>
+              <br>
 
     </div>
 
