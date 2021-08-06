@@ -79,15 +79,33 @@ class Admin extends CI_Controller {
 
 	public function insert_bpp()
 	{
+		$bulan1 = $this->input->post('bulan1');
+		$bulan2 = $this->input->post('bulan2');
+		$tahun1 = $this->input->post('tahun1');
+		$tahun2 = $this->input->post('tahun2');
+		$keterangan_tambahan = $this->input->post('keterangan_tambahan');
+		
+		if ($bulan1=="" && $tahun1=="") {
+			$setrip="";
+		}elseif($bulan2=="" && $tahun2==""){
+			$setrip="";
+		}
+		else {
+			$setrip="-";
+		}
+		$keterangan=$bulan1." ".$tahun1." ".$setrip." ".$bulan2." ".$tahun2."\n".$keterangan_tambahan;
+
 			$data = array(
 			'nis' => $this->input->post('nis'),
 			'nama' => $this->input->post('nama'),
 			'kelas' => $this->input->post('kelas'),
 			'jenjang' => $this->input->post('jenjang'),
 			'status' => $this->input->post('status'),
-			'keterangan' => $this->input->post('keterangan')
+			'keterangan' => $keterangan
 		);
 	
+
+
 		$cek_nis = $this->M_ppdb->cek_nis($this->input->post('nis'))->num_rows();
 
 		if ($cek_nis>0) {
@@ -101,13 +119,30 @@ class Admin extends CI_Controller {
 
 	public function update_bpp(){
 
+
+		$bulan1 = $this->input->post('bulan1');
+		$bulan2 = $this->input->post('bulan2');
+		$tahun1 = $this->input->post('tahun1');
+		$tahun2 = $this->input->post('tahun2');
+		$keterangan_tambahan = $this->input->post('keterangan_tambahan');
+		
+		if ($bulan1=="" && $tahun1=="") {
+			$setrip="";
+		}elseif($bulan2=="" && $tahun2==""){
+			$setrip="";
+		}
+		else {
+			$setrip="-";
+		}
+		$keterangan=$bulan1." ".$tahun1." ".$setrip." ".$bulan2." ".$tahun2."\n".$keterangan_tambahan;
+
 		$data = array(
 			'nama' => $this->input->post('nama'),
 			'kelas' => $this->input->post('kelas'),
 			'jenjang' => $this->input->post('jenjang'),
 			'kelas' => $this->input->post('kelas'),
 			'status' => $this->input->post('status'),
-			'keterangan' => $this->input->post('keterangan')
+			'keterangan' => $keterangan
 		);
 		
 	
@@ -137,6 +172,41 @@ class Admin extends CI_Controller {
 		$this->load->view('tambah_bpp');
 		$this->load->view('template/footer');
 	}
+
+
+	public function rekap_data(){
+		$sess_data = $this->session->userdata();
+		$data['jenjang'] = $this->M_ppdb->tampil_jenjang()->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('rekap_data',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function ambil_kelas($id){
+		$sess_data = $this->session->userdata();
+		$data['kelas'] = $this->M_ppdb->tampil_kelas($id)->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('rekap_data_kelas',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function ambil_siswa($id){
+		$sess_data = $this->session->userdata();
+		$data['siswa'] = $this->M_ppdb->tampil_siswa($id)->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('rekap_data_siswa',$data);
+		$this->load->view('template/footer');
+	}
+
+
+
+
+
+
+
 
 
 	public function tambahkuota(){

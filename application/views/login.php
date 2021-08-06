@@ -23,7 +23,7 @@
           <div class="card-body">
             <img src="<?=base_url()?>assets22/img/favicon.png" class="mx-auto d-block" width="100px">
             <h6 class="text-center" style="margin-top:5px;"><b>SISTEM INFORMASI MANAJEMEN<br>BPP PESERTA DIDIK<br>SUKMA BANGSA BIREUEN</b></h6><br>
-            <h5 class="text-center"><b>LOGIN ADMIN TU</b></h5>
+            <h5 class="text-center"><b>LOGIN ADMIN</b></h5>
 
             <?php echo form_open('hal/login_aksi');?>
               <div class="form-label-group">

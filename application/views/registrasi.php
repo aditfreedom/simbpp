@@ -75,9 +75,14 @@
     <a href="#" class="btn btn-danger rounded-pill text-left" style="width:100%"><b>ISI NIS UNTUK PROSES PENCARIAN DATA</b></a><br><br>
     <form action="<?=base_url('hal/cariuser')?>" method="get">
     <div class="form-group">
-        <label for=""><b>NIS</b></label>
-        <input type="text" name="nisn" class="form-control" placeholder="Isi NIS" maxlength="16" required>
-        </div>       
+        <label for=""><b>NAMA</b></label>
+        <select class="form-control selectpicker" data-size="1" name="nisn"  data-live-search="true" >
+        <option value="">--CARI NAMA--</option>
+        <?php foreach ($siswa as $data) : ?>
+          <option value="<?=$data->nis?>">(<?=$data->nis?>) <?=$data->nama?> - Kelas <?=$data->kelas?></option>
+          <?php endforeach?>
+              </select>
+                    </div>       
         <button type="submit" class="btn btn-primary font-weight-bold btn-block" style="margin-bottom:14px;">CARI DATA</button>
         </form>
       </div>

@@ -22,7 +22,7 @@
   <form method="post" action="<?php echo base_url().'admin/insert_bpp'; ?>">
           <div class="form-group">
             <label for="">NIS</label>
-            <input type="text" name="nis" class="form-control" required>
+            <input type="text" name="nis" maxlength="10" class="form-control" required>
           </div>
 
           <div class="form-group">
@@ -66,10 +66,11 @@
            </div>
 
           <div class="form-group">
-              <label for="">KETERANGAN TUNGGAKAN</label>
+              <label for="">PERIODE TUNGGAKAN</label>
               <div class="row">
                 <div class="col">
-                <select class="form-control selectpicker" data-style="btn-primary" data-size="3" name="bulan1" id="bulan1" data-live-search="true" required>
+                  <h6>Bulan</h6>
+                <select class="form-control selectpicker" data-style="btn-primary" data-size="3" name="bulan1" id="bulan1" data-live-search="true" >
                   <option value="">Lunas</option>
                   <option value="JANUARI">JANUARI</option>
                   <option value="FEBRUARI">FEBRUARI</option>
@@ -86,7 +87,49 @@
               </select>
                 </div>
                 <div class="col">
-                <select class="form-control selectpicker" data-style="btn-primary" data-size="3" name="tahun1" id="tahun1" data-live-search="true" required>
+                <h6>Tahun</h6>
+                <select class="form-control selectpicker" data-style="btn-primary" data-size="3" name="tahun1" id="tahun1" data-live-search="true" >
+                  <option value="">Lunas</option>
+                  <option value="2018">2018</option>
+                  <option value="2019">2019</option>
+                  <option value="2020">2020</option>
+                  <option value="2021">2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
+                  <option value="2026">2026</option>
+                  <option value="2027">2027</option>
+                  <option value="2028">2028</option>
+                  <option value="2029">2029</option>
+              </select>
+                </div>
+                <div class="col">
+                  <br>
+                  <h6 class="text-center">Sampai Dengan</h6>
+                </div>
+
+                <div class="col">
+                <h6>Bulan</h6>
+                <select class="form-control selectpicker" data-style="btn-danger" data-size="3" name="bulan2" id="bulan1" data-live-search="true" >
+                  <option value="">Lunas</option>
+                  <option value="JANUARI">JANUARI</option>
+                  <option value="FEBRUARI">FEBRUARI</option>
+                  <option value="MARET">MARET</option>
+                  <option value="APRIL">APRIL</option>
+                  <option value="MEI">MEI</option>
+                  <option value="JUNI">JUNI</option>
+                  <option value="JULI">JULI</option>
+                  <option value="AGUSTUS">AGUSTUS</option>
+                  <option value="SEPTEMBER">SEPTEMBER</option>
+                  <option value="OKTOBER">OKTOBER</option>
+                  <option value="NOVEMBER">NOVEMBER</option>
+                  <option value="DESEMBER">DESEMBER</option>
+              </select>
+                </div>
+                <div class="col">
+                <h6>Tahun</h6>
+                <select class="form-control selectpicker" data-style="btn-danger" data-size="3" name="tahun2" id="tahun1" data-live-search="true" >
                   <option value="">Lunas</option>
                   <option value="2018">2018</option>
                   <option value="2019">2019</option>
@@ -103,12 +146,15 @@
               </select>
                 </div>
               </div>
-      
+          </div>
+          <div class="form-group">
+            <label for="">KETERANGAN TAMBAHAN</label>
+            <textarea class="form-control" name="keterangan_tambahan" cols="30" rows="5" placeholder="Keterangan Tambahan"></textarea>
           </div>
 
 
 
-           <button type="submit" class="form-control btn btn-primary font-weight-bold" id="simpan">SIMPAN DATA</button>
+           <button type="submit" class="form-control btn btn-info font-weight-bold" id="simpan">SIMPAN DATA</button>
 
     </form>
 

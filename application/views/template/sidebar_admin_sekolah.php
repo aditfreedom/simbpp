@@ -7,6 +7,14 @@
       <span class="brand-text font-weight-light font-weight-bold"><b style="font-size:15px;">SIM BPP SSB BIREUEN</b></span>
     </a>
 
+    <?php 
+    if ($role=="0") {
+        $hidden="";
+    }else {
+      $hidden="hidden";
+    }
+    ?>
+
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
@@ -33,11 +41,20 @@
             </a>
           </li>
 
-          <li class="nav-item ">
+          <li class="nav-item " <?=$hidden?>>
             <a href="<?=base_url('admin/data_bpp/');?>" class="nav-link">
               <i class="nav-icon fa fa-money-check-alt"></i>
               <p>
                Data BPP
+              </p>
+            </a>
+          </li>         
+
+          <li class="nav-item ">
+            <a href="<?=base_url('admin/rekap_data/');?>" class="nav-link">
+              <i class="nav-icon fa fa-table"></i>
+              <p>
+               Rekap Per Rombel
               </p>
             </a>
           </li>         

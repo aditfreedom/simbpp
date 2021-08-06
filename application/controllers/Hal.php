@@ -52,7 +52,7 @@ class Hal extends CI_Controller {
  
                 //  redirect(base_url('home'));
 
-                if ($sess_data['role'] == "0"){
+                if ($sess_data['role'] == "0" || $sess_data['role'] == "1"){
                     $this->session->set_userdata($sess_data); 
                     redirect(base_url('admin')); 
                  }
@@ -72,12 +72,15 @@ class Hal extends CI_Controller {
 
      public function cari()
 	{
-		$this->load->view('registrasi');
+
+        $data['siswa'] = $this->M_ppdb->siswa_cek()->result();
+		$this->load->view('registrasi',$data);
 	}
 
     public function cari2()
 	{
-		$this->load->view('registrasi2');
+        $data['siswa'] = $this->M_ppdb->siswa_cek()->result();
+		$this->load->view('registrasi2',$data);
 	}
 
     public function tambahuser(){

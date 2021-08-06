@@ -333,6 +333,30 @@ class M_ppdb extends CI_Model
         return $query;
     }
 
+    public function tampil_jenjang()
+    {
+        $query = $this->db->query("SELECT * from jenjang ORDER BY id_jenjang ASC");
+        return $query;
+    }
+
+    public function tampil_kelas($id)
+    {
+        $query = $this->db->query("SELECT * from kelas WHERE id_jenjang='$id' ORDER BY id_kelas ASC");
+        return $query;
+    }
+
+    public function tampil_siswa($id)
+    {
+        $query = $this->db->query("SELECT * from data WHERE kelas='$id' ORDER BY nama ASC");
+        return $query;
+    }
+
+    public function siswa_cek()
+    {
+        $query = $this->db->query("SELECT * from data");
+        return $query;
+    }
+
     public function tampil_lulus($id_sekolah)
     {
         $query = $this->db->query("SELECT * from sekolah_tujuan 

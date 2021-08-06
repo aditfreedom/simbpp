@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Agu 2021 pada 06.59
--- Versi server: 10.4.14-MariaDB
--- Versi PHP: 7.2.34
+-- Waktu pembuatan: 06 Agu 2021 pada 18.49
+-- Versi server: 10.4.18-MariaDB
+-- Versi PHP: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,7 @@ CREATE TABLE `data` (
 --
 
 INSERT INTO `data` (`nis`, `nama`, `kelas`, `jenjang`, `status`, `keterangan`) VALUES
-('10163001', 'Aira Sabilla', 'VI', 'SD', 'BELUM LUNAS', 'JULI 2021'),
+('10163001', 'Aira Sabilla', 'VI', 'SD', 'BELUM LUNAS', '    \nJULI 2021   \r\n'),
 ('10163002', 'Akhdan Ziyad', 'VI', 'SD', 'BELUM LUNAS', 'AGUSTUS 2021'),
 ('10163003', 'ALFIA FARADISA', 'VI', 'SD', 'BELUM LUNAS', 'SEPTEMBER 2021'),
 ('10163004', 'ALYA DIAN SHATARA', 'VI', 'SD', 'BELUM LUNAS', 'JULI 2021'),
@@ -741,7 +741,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `nama_user`, `username`, `password`, `role`) VALUES
 (1, 'ADMINISTRATOR TU', 'tatausaha', '0eab68759cc784399fa5c6ba986cdb3d', 0),
 (2, 'INDRA SAPUTRA, S.E', '10081045', '272fccee2682565378fb775496b50155', 0),
-(3, 'SITI DEA SATIFA, S.ST', '10161002', '467b481876db1758d9b38a75aabbccdb', 0);
+(3, 'SITI DEA SATIFA, S.ST', '10161002', '467b481876db1758d9b38a75aabbccdb', 0),
+(4, 'WALI KELAS', 'walikelas', 'dcf52f84dbf511ee4a0abcfc18093ee4', 1);
 
 --
 -- Indexes for dumped tables
@@ -791,7 +792,7 @@ ALTER TABLE `kelas`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
