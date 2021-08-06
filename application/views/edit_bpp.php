@@ -33,7 +33,21 @@
 
           <div class="form-group">
             <label for="">KELAS</label>
-            <input type="text" name="kelas" class="form-control" value="<?=$data->kelas?>" required>
+            <select class="form-control selectpicker" data-style="btn-primary" data-size="3" name="kelas" id="kelas" data-live-search="true" required>
+                  <option selected value="<?=$data->kelas?>"><?=$data->kelas?></option>
+                  <option value="I">I</option>
+                  <option value="II">II</option>
+                  <option value="III">III</option>
+                  <option value="IV">IV</option>
+                  <option value="V">V</option>
+                  <option value="VI">VI</option>
+                  <option value="VII">VII</option>
+                  <option value="VIII">VIII</option>
+                  <option value="IX">IX</option>
+                  <option value="X">X</option>
+                  <option value="XI">XI</option>
+                  <option value="XII">XII</option>
+              </select>
           </div>
 
 

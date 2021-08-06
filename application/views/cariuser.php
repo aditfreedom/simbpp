@@ -25,7 +25,10 @@
   <link href="<?=base_url()?>assets/vendor/venobox/venobox.css" rel="stylesheet">
   <link href="<?=base_url()?>assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+  
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
 
+ 
 
   <!-- Template Main CSS File -->
   <link href="<?=base_url()?>assets/css/style.css" rel="stylesheet">
@@ -66,9 +69,7 @@
   </header><!-- End Header -->
   
     <div class="container text-center">
-    <br>
-</div>
-<br>
+    <br><br>
 
 
     <div class="container">
@@ -89,9 +90,12 @@
     }
     ?>
 
-<div <?=$box;?> class="alert <?=$alert?>" role="alert">
+
+
+<div <?=$box;?> class="alert <?=$alert?>" role="alert" style="width:70%;margin: 0 auto;">
 <b>STATUS BPP ANDA :</b><br><br>
-<table class="table table-bordered table-dark text-center">
+
+<table class="table table-bordered table-dark font-weight-bold" id="example">
           <thead>
             <tr>
               <th scope="col">NIS</th>
@@ -102,7 +106,8 @@
               <th scope="col">KETERANGAN TUNGGAKAN</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="text-dark ">
+            <tr>
 <?php foreach ($cariuser as $data) : ?>
             <td><?=$data->nis;?></td>
             <td><?=$data->nama;?></td>
@@ -111,22 +116,27 @@
             <td><a class="<?=$class?> font-weight-bold"><?=$data->status;?></a></td>
             <td><?=$data->keterangan;?></td>
 <?php endforeach;?>
+</tr>
           </tbody>
-          </table>
+          </table><br>
+          <b>APABILA TERDAPAT KEKELIRUAN, HARAP MENGHUBUNGI BAGIAN TATA USAHA</b><br><br>
+
 </div>
 
               <div class="text-center mt-3 font-weight-bold">
-              <a class="btn btn-primary text-decoration-none font-weight-bold" href="<?=base_url('hal/cari')?>">CARI DATA KEMBALI</a> 
-              <a class="btn btn-dark text-decoration-none font-weight-bold" href="<?=base_url()?>">KEMBALI KE HALAMAN UTAMA</a>
+              <a class="btn btn-primary text-decoration-none font-weight-bold mb-3" href="<?=base_url('hal/cari')?>">CARI DATA KEMBALI</a> &nbsp;
+              <a class="btn btn-dark text-decoration-none font-weight-bold mb-3" href="<?=base_url()?>">KEMBALI KE HALAMAN UTAMA</a>
               </div>
 
     </div>
-
-  
   <?php endforeach ;?>
 
 
-    </div>
+  </div>
+
+
+
+
 
 
     <!-- Optional JavaScript; choose one of the two! -->
@@ -143,5 +153,28 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.flash.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#example').DataTable( {
+      "scrollX": true,
+      "paging":   false,
+        "ordering": false,
+        "info":     false,
+        "searching": false
+
+    } )      ;
+;
+} );
+</script>
   </body>
 </html>
