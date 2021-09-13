@@ -42,6 +42,15 @@
           </li>
 
           <li class="nav-item " <?=$hidden?>>
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-user"></i>
+              <p>
+               Data Pengguna
+              </p>
+            </a>
+          </li>         
+
+          <li class="nav-item " <?=$hidden?>>
             <a href="<?=base_url('admin/data_bpp/');?>" class="nav-link">
               <i class="nav-icon fa fa-money-check-alt"></i>
               <p>

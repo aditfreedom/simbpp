@@ -29,6 +29,9 @@
           <th scope="col">NAMA</th>
           <th scope="col">KELAS</th>
           <th scope="col">JENJANG</th>
+          <th scope="col">JUMLAH BULAN TUNGGAKAN</th>
+          <th scope="col">BPP PER BULAN</th>
+          <th scope="col">TOTAL</th>
           <th scope="col">STATUS</th>
           <th scope="col">KETERANGAN</th>
         </tr>
@@ -42,6 +45,9 @@
             <td><?php echo $data->nama; ?></td>
             <td><?php echo $data->kelas; ?></td>
             <td><?php echo $data->jenjang; ?></td>
+            <td><?php echo $data->jumlah_bulan; ?></td>
+            <td><?php echo $data->bpp_per_bulan; ?></td>
+            <td><?php echo $data->total; ?></td>
             <td><?php echo $data->status; ?></td>
             <td><?php echo $data->keterangan; ?></td>
           </tr>

@@ -37,9 +37,6 @@
               </div>
               <button class="btn btn-lg text-light btn-block text-uppercase font-weight-bold rounded-pill btn-info" type="submit"><b>Login</b></button>
               <?php echo form_close();?>
-              <div class="text-center mt-3 font-weight-bold">
-              <a class="text-decoration-none" href="<?=base_url()?>">KEMBALI KE HALAMAN UTAMA</a>
-              </div>
             </div>
         </div>
       </div>

@@ -101,7 +101,10 @@ class Admin extends CI_Controller {
 			'kelas' => $this->input->post('kelas'),
 			'jenjang' => $this->input->post('jenjang'),
 			'status' => $this->input->post('status'),
-			'keterangan' => $keterangan
+			'keterangan' => $keterangan,
+			'jumlah_bulan' => $this->input->post('jumlah_bulan'),
+			'bpp_per_bulan' => $this->input->post('bpp_per_bulan'),
+			'total' => $this->input->post('total')
 		);
 	
 
@@ -142,7 +145,10 @@ class Admin extends CI_Controller {
 			'jenjang' => $this->input->post('jenjang'),
 			'kelas' => $this->input->post('kelas'),
 			'status' => $this->input->post('status'),
-			'keterangan' => $keterangan
+			'keterangan' => $keterangan,
+			'jumlah_bulan' => $this->input->post('jumlah_bulan'),
+			'bpp_per_bulan' => $this->input->post('bpp_per_bulan'),
+			'total' => $this->input->post('total')
 		);
 		
 	

@@ -64,6 +64,28 @@
                 <option value="BELUM LUNAS">BELUM LUNAS</option>
             </select>         
            </div>
+           <br>
+           <hr>
+           <h2>JUMLAH TUNGGAKAN</h2>
+           <div class="container">
+          <div class="row">
+            <div class="col">
+            <label for="">Jumlah Bulan Tunggakan</label>
+            <input class="form-control" id="jumlah" name="jumlah_bulan" type="number" >
+            </div>
+            <div class="col">
+            <div class="col">
+            <label for="">BPP Per Bulan</label>
+            <input class="form-control" id="per_bulan" name="bpp_per_bulan" type="number" >
+            </div>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <a class="mb-1 btn btn-success text-light font-weight-bold" onclick="total()">HITUNG TOTAL TUNGGAKAN</a><br>
+            <label for="">TOTAL TUNGGAKAN BPP</label><br>
+            <textarea readonly class="form-control" id="total" name="total" cols="30" rows="5" placeholder="Keterangan Tambahan"></textarea>
+          </div>
 
           <div class="form-group">
               <label for="">PERIODE TUNGGAKAN</label>
@@ -180,3 +202,11 @@
   </div>
 </div>
 </div>
+
+<script>
+function total() {
+  var jumlah = document.getElementById("jumlah").value;
+  var per_bulan = document.getElementById("per_bulan").value;
+  document.getElementById("total").value = jumlah * per_bulan;
+}
+</script>
