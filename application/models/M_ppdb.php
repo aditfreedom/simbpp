@@ -115,6 +115,12 @@ class M_ppdb extends CI_Model
         LEFT JOIN data_sd ON datasiswa.id_sekolah = data_sd.id_sekolah WHERE pengguna.id='$id' ");
     }
 
+    public function tampil_data_users()
+    {
+        return $this->db->query("SELECT * FROM user
+                                LEFT JOIN kelas ON user.id_kelas = kelas.id_kelas");
+    }
+
     public function tampil_data_sekolahtujuan($id_pesertadidik)
     {
         $result = $this->db->query("SELECT * FROM sekolah_tujuan WHERE id_pesertadidik='$id_pesertadidik'");
@@ -339,11 +345,28 @@ class M_ppdb extends CI_Model
         return $query;
     }
 
+    public function tampil_jenjang_walas($id_kelas,$id_user)
+    {
+        $query = $this->db->query("SELECT * from user
+                                    LEFT JOIN kelas ON user.id_kelas = kelas.id_kelas 
+                                    LEFT JOIN jenjang ON kelas.id_jenjang = jenjang.id_jenjang WHERE user.id_user='$id_user' AND user.id_kelas='$id_kelas'");
+        return $query;
+    }
+
+    public function tampil_kelas_walas($id,$id_kelas,$id_user)
+    {
+        $query = $this->db->query("SELECT * from kelas
+                                 LEFT JOIN user ON kelas.id_kelas = user.id_kelas WHERE kelas.id_jenjang='$id' AND kelas.id_kelas='$id_kelas' AND user.id_user='$id_user' ORDER BY kelas.id_kelas ASC");
+        return $query;
+    }
+
     public function tampil_kelas($id)
     {
         $query = $this->db->query("SELECT * from kelas WHERE id_jenjang='$id' ORDER BY id_kelas ASC");
         return $query;
     }
+
+    
 
     public function tampil_siswa($id)
     {

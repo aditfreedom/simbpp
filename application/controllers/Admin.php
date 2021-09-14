@@ -181,21 +181,47 @@ class Admin extends CI_Controller {
 
 
 	public function rekap_data(){
+		$role = $this->session->userdata('role');
 		$sess_data = $this->session->userdata();
-		$data['jenjang'] = $this->M_ppdb->tampil_jenjang()->result();
-		$this->load->view('template/header');
-		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
-		$this->load->view('rekap_data',$data);
-		$this->load->view('template/footer');
+		$id_kelas = $this->session->userdata('id_kelas');
+		$id_user = $this->session->userdata('id_user');
+		if ($role=="2") {
+			$data['jenjang'] = $this->M_ppdb->tampil_jenjang_walas($id_kelas,$id_user)->result();
+			$this->load->view('template/header');
+			$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+			$this->load->view('rekap_data',$data);
+			$this->load->view('template/footer');	
+		}else {
+			$data['jenjang'] = $this->M_ppdb->tampil_jenjang()->result();
+			$this->load->view('template/header');
+			$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+			$this->load->view('rekap_data',$data);
+			$this->load->view('template/footer');		
+		}
+		
 	}
 
 	public function ambil_kelas($id){
+		$role = $this->session->userdata('role');
 		$sess_data = $this->session->userdata();
-		$data['kelas'] = $this->M_ppdb->tampil_kelas($id)->result();
-		$this->load->view('template/header');
-		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
-		$this->load->view('rekap_data_kelas',$data);
-		$this->load->view('template/footer');
+		$id_kelas = $this->session->userdata('id_kelas');
+		$id_user = $this->session->userdata('id_user');
+
+		if ($role=="2") {
+			$data['kelas'] = $this->M_ppdb->tampil_kelas_walas($id,$id_kelas,$id_user)->result();
+			$this->load->view('template/header');
+			$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+			$this->load->view('rekap_data_kelas',$data);
+			$this->load->view('template/footer');
+		}
+		else{
+			$data['kelas'] = $this->M_ppdb->tampil_kelas($id)->result();
+			$this->load->view('template/header');
+			$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+			$this->load->view('rekap_data_kelas',$data);
+			$this->load->view('template/footer');
+		}
+
 	}
 
 	public function ambil_siswa($id){
@@ -204,6 +230,17 @@ class Admin extends CI_Controller {
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
 		$this->load->view('rekap_data_siswa',$data);
+		$this->load->view('template/footer');
+	}
+
+
+	public function data_pengguna()
+	{
+		$sess_data = $this->session->userdata();
+		$data['pengguna'] = $this->M_ppdb->tampil_data_users()->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('data_pengguna',$data);
 		$this->load->view('template/footer');
 	}
 

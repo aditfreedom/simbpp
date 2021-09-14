@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Sep 2021 pada 08.15
--- Versi server: 10.4.14-MariaDB
--- Versi PHP: 7.2.34
+-- Waktu pembuatan: 14 Sep 2021 pada 16.23
+-- Versi server: 10.4.18-MariaDB
+-- Versi PHP: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -734,7 +734,8 @@ INSERT INTO `kelas` (`id_kelas`, `id_jenjang`, `kelas`) VALUES
 
 CREATE TABLE `user` (
   `id_user` int(11) NOT NULL,
-  `nama_user` varchar(255) NOT NULL,
+  `nama_user` varchar(255) DEFAULT NULL,
+  `id_kelas` varchar(11) DEFAULT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` int(1) NOT NULL
@@ -744,11 +745,12 @@ CREATE TABLE `user` (
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id_user`, `nama_user`, `username`, `password`, `role`) VALUES
-(1, 'ADMINISTRATOR TU', 'tatausaha', 'e0017d45c531399fb258b025b47f8ab2', 0),
-(2, 'INDRA SAPUTRA, S.E', '10081045', '272fccee2682565378fb775496b50155', 0),
-(3, 'SITI DEA SATIFA, S.ST', '10161002', '467b481876db1758d9b38a75aabbccdb', 0),
-(4, 'WALI KELAS', 'walikelas', 'dcf52f84dbf511ee4a0abcfc18093ee4', 1);
+INSERT INTO `user` (`id_user`, `nama_user`, `id_kelas`, `username`, `password`, `role`) VALUES
+(1, 'ADMINISTRATOR', '0', 'admin', '0eab68759cc784399fa5c6ba986cdb3d', 0),
+(2, 'INDRA SAPUTRA, S.E', '0', '10081045', '272fccee2682565378fb775496b50155', 1),
+(3, 'SITI DEA SATIFA, S.ST', '0', '10161002', '467b481876db1758d9b38a75aabbccdb', 1),
+(4, 'ADERIANA MASTHURA, S.Si', '1', 'walikelas', 'dcf52f84dbf511ee4a0abcfc18093ee4', 2),
+(5, 'PUTRI MAULIDA, S.Pd.', '1', 'putri', '4093fed663717c843bea100d17fb67c8', 2);
 
 --
 -- Indexes for dumped tables
@@ -798,7 +800,7 @@ ALTER TABLE `kelas`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

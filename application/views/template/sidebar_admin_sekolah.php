@@ -8,11 +8,14 @@
     </a>
 
     <?php 
-    if ($role=="0") {
-        $hidden="";
-    }else {
-      $hidden="hidden";
+      $hidden_tu="";
+      $hidden_walas="";
+    if ($role=="1") {
+        $hidden_tu="hidden";
     }
+    if ($role=="2") {
+      $hidden_walas="hidden";
+  }
     ?>
 
     <!-- Sidebar -->
@@ -20,7 +23,6 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?php echo base_url()?>asset/dist/img/adit.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block font-weight-bold"><?php echo $nama_user; ?></a>
@@ -41,8 +43,8 @@
             </a>
           </li>
 
-          <li class="nav-item " <?=$hidden?>>
-            <a href="#" class="nav-link">
+          <li class="nav-item " <?=$hidden_tu?> <?=$hidden_walas?>>
+            <a href="<?=base_url('admin/data_pengguna/');?>" class="nav-link">
               <i class="nav-icon fa fa-user"></i>
               <p>
                Data Pengguna
@@ -50,7 +52,7 @@
             </a>
           </li>         
 
-          <li class="nav-item " <?=$hidden?>>
+          <li class="nav-item " <?=$hidden_walas?>>
             <a href="<?=base_url('admin/data_bpp/');?>" class="nav-link">
               <i class="nav-icon fa fa-money-check-alt"></i>
               <p>
@@ -63,7 +65,7 @@
             <a href="<?=base_url('admin/rekap_data/');?>" class="nav-link">
               <i class="nav-icon fa fa-table"></i>
               <p>
-               Rekap Per Rombel
+               Rekap BPP Per Kelas
               </p>
             </a>
           </li>         
