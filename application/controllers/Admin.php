@@ -164,6 +164,7 @@ class Admin extends CI_Controller {
 		$sess_data = $this->session->userdata();
 		$nis =    array ('nis' => $id);
 		$data['edit_bpp'] = $this->M_ppdb->edit_bpp($nis)->result();
+		$data['biaya'] = $this->M_ppdb->tampil_biaya()->result();
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
 		$this->load->view('edit_bpp',$data);
@@ -173,9 +174,10 @@ class Admin extends CI_Controller {
 
 	public function tambah_bpp(){
 		$sess_data = $this->session->userdata();
+		$data['biaya'] = $this->M_ppdb->tampil_biaya()->result();
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
-		$this->load->view('tambah_bpp');
+		$this->load->view('tambah_bpp',$data);
 		$this->load->view('template/footer');
 	}
 
@@ -244,7 +246,111 @@ class Admin extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
+	public function tunggakan()
+	{
+		$sess_data = $this->session->userdata();
+		$data['tunggakan_sd'] = $this->M_ppdb->tampil_data_tunggakan_sd()->result();
+		$data['tunggakan_smp'] = $this->M_ppdb->tampil_data_tunggakan_smp()->result();
+		$data['tunggakan_sma'] = $this->M_ppdb->tampil_data_tunggakan_sma()->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('tunggakan',$data);
+		$this->load->view('template/footer');
+	}
 
+	public function report()
+	{
+		$sess_data = $this->session->userdata();
+		$data['report'] = $this->M_ppdb->tampil_laporan()->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('report',$data);
+		$this->load->view('template/footer');
+	}
+	
+	public function hapus_report($id){
+		$id =    array ('id_laporan' => $id);
+		$this->M_ppdb->hapus_report($id,'laporan');
+		redirect(base_url('admin/report'));
+	}
+
+	
+	public function tambahreport()
+	{
+		$sess_data = $this->session->userdata();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('tambahreport');
+		$this->load->view('template/footer');
+	}
+
+	public function insert_laporan()
+	{
+			$file_laporan	= $_FILES['file_laporan']['name'];
+
+			$config['upload_path']          = 'asset/laporan/';
+			$config['allowed_types']        = 'xls|xlsx|pdf|PDF';
+			$config['max_size']             = 0;
+			$config['max_width']            = 0;
+			$config['max_height']           = 0;
+		
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
+
+			if (! $this->upload->do_upload('file_laporan')) {
+				// $error = array('error' => $this->upload->display_errors());
+				$this->load->view('error_upload_berkas2');
+			}else{
+				$file_laporan=$this->upload->data('file_name');
+			}
+
+			$data = array(
+			'file_laporan' => $file_laporan,
+			'keterangan' => $this->input->post('keterangan')
+		);
+	
+			$this->M_ppdb->insert_laporan($data,'laporan');
+			$this->load->view('berhasil_laporan');
+
+	}
+
+	public function biaya()
+	{
+		$sess_data = $this->session->userdata();
+		$data['biaya'] = $this->M_ppdb->tampil_biaya()->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('biaya',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function hapus_biaya($id){
+		$id =    array ('id_biaya' => $id);
+		$this->M_ppdb->hapus_biaya($id,'biaya');
+		redirect(base_url('admin/biaya'));
+	}
+
+	public function tambahbiaya()
+	{
+		$sess_data = $this->session->userdata();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('tambahbiaya');
+		$this->load->view('template/footer');
+	}
+
+	public function insert_biaya()
+	{
+
+			$data = array(
+			'nominal' => $this->input->post('nominal'),
+			'keterangan' => $this->input->post('keterangan')
+		);
+	
+			$this->M_ppdb->insert_biaya($data,'biaya');
+			$this->load->view('berhasil_biaya');
+
+	}
 
 
 

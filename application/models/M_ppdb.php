@@ -54,6 +54,53 @@ class M_ppdb extends CI_Model
         LEFT JOIN data_sd ON datasiswa.id_sekolah = data_sd.id_sekolah WHERE pengguna.role='2' ");
     }
 
+    public function hapus_report($id)
+    {
+        $this->db->delete('laporan', $id);
+    }
+
+
+    public function tampil_data_tunggakan_sd()
+    {
+        return $this->db->query("SELECT * FROM data WHERE jenjang ='SD'");
+    }
+
+    public function tampil_data_tunggakan_smp()
+    {
+        return $this->db->query("SELECT * FROM data WHERE jenjang ='SMP'");
+    }
+
+    public function tampil_data_tunggakan_sma()
+    {
+        return $this->db->query("SELECT * FROM data WHERE jenjang ='SMA'");
+    }
+
+    public function tampil_laporan()
+    {
+        return $this->db->query("SELECT * FROM laporan");
+    }
+
+    public function tampil_biaya()
+    {
+        return $this->db->query("SELECT * FROM biaya");
+    }
+
+    public function hapus_biaya($id)
+    {
+        $this->db->delete('biaya', $id);
+    }
+
+    public function insert_laporan($data)
+    {
+        $this->db->insert('laporan', $data);
+    }
+
+    public function insert_biaya($data)
+    {
+        $this->db->insert('biaya', $data);
+    }
+
+
     public function tampilakunsekolah($id)
     {
         return $this->db->query("SELECT * FROM pengguna WHERE id_pesertadidik ='$id' ");
@@ -193,6 +240,7 @@ class M_ppdb extends CI_Model
         $result = $this->db->query("SELECT * FROM data_sd WHERE npsn='$npsn'");
         return $result->num_rows();
     }
+    
 
     public function tambah_data($data,$table)
     {

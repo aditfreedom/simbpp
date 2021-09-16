@@ -79,14 +79,25 @@
             <label for="">Jumlah Bulan Tunggakan</label>
             <input class="form-control" id="jumlah" name="jumlah_bulan" type="number" value="<?=$data->jumlah_bulan?>">
             </div>
+            <?php endforeach; ?>
+
             <div class="col">
             <div class="col">
             <label for="">BPP Per Bulan</label>
-            <input class="form-control" id="per_bulan" name="bpp_per_bulan" type="number" value="<?=$data->bpp_per_bulan?>">
+            <select name="bpp_per_bulan" id="per_bulan" class="form-control">
+            <?php foreach ($edit_bpp as $data) : ?>
+              <option selected hidden value="<?=$data->bpp_per_bulan?>">Rp. <?=$data->bpp_per_bulan?></option>
+              <?php endforeach; ?>
+              <?php foreach ($biaya as $data) : ?>
+              <option value="<?=$data->nominal?>">Rp. <?=$data->nominal?></option>
+              <?php endforeach; ?>
+            </select>
+            <!-- <input class="form-control" id="per_bulan" name="bpp_per_bulan" type="number" value="<?=$data->bpp_per_bulan?>"> -->
             </div>
             </div>
           </div>
           <br>
+          <?php foreach ($edit_bpp as $data) : ?>
           <div class="form-group">
             <a class="mb-1 btn btn-success text-light font-weight-bold" onclick="total()">HITUNG TOTAL TUNGGAKAN</a><br>
             <label for="">TOTAL TUNGGAKAN BPP</label><br>

@@ -4,12 +4,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">DATA BPP SISWA</h1>
+          <h1 class="m-0 text-dark">DAFTAR BIAYA BPP</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">SIM BPP</a></li>
-            <li class="breadcrumb-item active">Data BPP</li>
+            <li class="breadcrumb-item active">Biaya</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -18,43 +18,25 @@
   <!-- /.content-header -->
   <div class="content">
     <p align="left">
-     <a class="btn btn-success font-weight-bold" href="<?=base_url('admin/tambah_bpp')?>">TAMBAH DATA</a>
+     <a class="btn btn-success font-weight-bold" href="<?=base_url('admin/tambahbiaya')?>">TAMBAH DATA</a>
     </p>
 
     <table class="table table-hover" id="example">
-      <thead class="text-left">
+      <thead class="text-center">
         <tr>
-          <th scope="col">NO</th>
-          <th scope="col">NIS</th>
-          <th scope="col">NAMA</th>
-          <th scope="col">KELAS</th>
-          <th scope="col">JENJANG</th>
-          <th scope="col">STATUS</th>
-          <th scope="col">JUMLAH BULAN TUNGGAKAN</th>
-          <th scope="col">BPP PER BULAN</th>
-          <th scope="col">TOTAL</th>
+          <th scope="col">NOMINAL</th>
           <th scope="col">KETERANGAN</th>
           <th scope="col">AKSI</th>
         </tr>
       </thead>
       <tbody>
-        <?php $i = 1;
-        foreach ($bpp as $data) : ?>
+        <?php 
+        foreach ($biaya as $data) : ?>
           <tr class="nomor text-center">
-            <th scope="row"><?php echo $i; ?></th>
-            <td><?php echo $data->nis; ?></td>
-            <td><?php echo $data->nama; ?></td>
-            <td><?php echo $data->kelas; ?></td>
-            <td><?php echo $data->jenjang; ?></td>
-            <td><?php echo $data->status; ?></td>
-            <td><?php echo $data->jumlah_bulan; ?></td>
-            <td>Rp. <?php echo $data->bpp_per_bulan; ?></td>
-            <td>Rp. <?php echo $data->total; ?></td>
+            <td><?php echo $data->nominal; ?></td>
             <td><?php echo $data->keterangan; ?></td>
-            <td><?php echo anchor('admin/edit_bpp/'.$data->nis,'<div class="btn btn-primary btn-sm text-bold">EDIT DATA</div>')?> 
-            <?php echo anchor('admin/hapus_bpp/'.$data->nis,'<div class="btn btn-danger btn-sm text-bold">HAPUS DATA</div>')?></td>
+            <td><?php echo anchor('admin/hapus_biaya/'.$data->id_biaya,'<div class="btn btn-danger btn-sm text-bold">HAPUS</div>')?></td>
           </tr>
-          <?php $i++; ?>
         <?php endforeach; ?>
       </tbody>
     </table>

@@ -76,7 +76,12 @@
             <div class="col">
             <div class="col">
             <label for="">BPP Per Bulan</label>
-            <input class="form-control" id="per_bulan" name="bpp_per_bulan" type="number" >
+            <select name="bpp_per_bulan" id="per_bulan" class="form-control">
+              <?php foreach ($biaya as $data) : ?>
+              <option value="<?=$data->nominal?>">Rp. <?=$data->nominal?></option>
+              <?php endforeach; ?>
+            </select>
+            <!-- <input class="form-control" id="per_bulan" name="bpp_per_bulan" type="number" > -->
             </div>
             </div>
           </div>

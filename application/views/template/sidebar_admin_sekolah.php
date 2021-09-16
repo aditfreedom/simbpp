@@ -25,7 +25,7 @@
         <div class="image">
         </div>
         <div class="info">
-          <a href="#" class="d-block font-weight-bold"><?php echo $nama_user; ?></a>
+          <a href="#" class="d-block font-weight-bold "><?php echo $nama_user; ?></a>
         </div>
       </div>
 
@@ -53,22 +53,50 @@
           </li>         
 
           <li class="nav-item " <?=$hidden_walas?>>
-            <a href="<?=base_url('admin/data_bpp/');?>" class="nav-link">
+            <a href="<?=base_url('admin/biaya/');?>" class="nav-link">
               <i class="nav-icon fa fa-money-check-alt"></i>
               <p>
-               Data BPP
+               Biaya BPP
               </p>
             </a>
           </li>         
 
-          <li class="nav-item ">
-            <a href="<?=base_url('admin/rekap_data/');?>" class="nav-link">
-              <i class="nav-icon fa fa-table"></i>
+          <li class="nav-item " <?=$hidden_walas?>>
+            <a href="<?=base_url('admin/data_bpp/');?>" class="nav-link">
+              <i class="nav-icon fa fa-money-check-alt"></i>
               <p>
-               Rekap BPP Per Kelas
+               Data BPP <sub class="text-warning">(Realtime)</sub>
               </p>
             </a>
           </li>         
+
+          <li class="nav-item">
+            <a href="<?=base_url('admin/rekap_data/');?>" class="nav-link">
+              <i class="nav-icon fa fa-table"></i>
+              <p>
+               Rekap BPP Per Kelas <sub class="text-warning">(Realtime)</sub>
+              </p>
+            </a>
+          </li>    
+          
+          <li class="nav-item" <?=$hidden_walas?>>
+            <a href="<?=base_url('admin/tunggakan/');?>" class="nav-link">
+              <i class="nav-icon fa fa-table"></i>
+              <p>
+               Tunggakan Per Divisi <sub class="text-warning">(Realtime)</sub>
+              </p>
+            </a>
+          </li>  
+
+          <li class="nav-item" <?=$hidden_walas?>>
+            <a href="<?=base_url('admin/report/');?>" class="nav-link">
+              <i class="nav-icon fa fa-upload"></i>
+              <p>
+               Laporan Bulanan
+              </p>
+            </a>
+          </li>          
+    
 
           <li class="nav-item">
             <a href="<?= base_url('admin/logout')?>" class="nav-link bg-danger">
