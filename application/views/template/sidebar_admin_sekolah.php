@@ -92,7 +92,7 @@
             <a href="<?=base_url('admin/report/');?>" class="nav-link">
               <i class="nav-icon fa fa-upload"></i>
               <p>
-               Laporan Bulanan
+               Laporan Tunggakan
               </p>
             </a>
           </li>          

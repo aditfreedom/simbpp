@@ -21,18 +21,18 @@
      <a class="btn btn-success font-weight-bold" href="<?=base_url('admin/tambah_bpp')?>">TAMBAH DATA</a>
     </p>
 
-    <table class="table table-hover" id="example">
+    <table class="table table-hover" id="example2">
       <thead class="text-left">
         <tr>
           <th scope="col">NO</th>
           <th scope="col">NIS</th>
           <th scope="col">NAMA</th>
-          <th scope="col">KELAS</th>
+          <th scope="col">TINGKAT</th>
           <th scope="col">JENJANG</th>
+          <th scope="col">STATUS</th>
           <th scope="col">JUMLAH BULAN TUNGGAKAN</th>
           <th scope="col">BPP PER BULAN</th>
           <th scope="col">TOTAL</th>
-          <th scope="col">STATUS</th>
           <th scope="col">KETERANGAN</th>
         </tr>
       </thead>
@@ -45,10 +45,10 @@
             <td><?php echo $data->nama; ?></td>
             <td><?php echo $data->kelas; ?></td>
             <td><?php echo $data->jenjang; ?></td>
+            <td><?php echo $data->status; ?></td>
             <td><?php echo $data->jumlah_bulan; ?></td>
             <td><?php echo $data->bpp_per_bulan; ?></td>
             <td><?php echo $data->total; ?></td>
-            <td><?php echo $data->status; ?></td>
             <td><?php echo $data->keterangan; ?></td>
           </tr>
           <?php $i++; ?>

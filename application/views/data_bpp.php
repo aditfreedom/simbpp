@@ -27,7 +27,7 @@
           <th scope="col">NO</th>
           <th scope="col">NIS</th>
           <th scope="col">NAMA</th>
-          <th scope="col">KELAS</th>
+          <th scope="col">TINGKAT</th>
           <th scope="col">JENJANG</th>
           <th scope="col">STATUS</th>
           <th scope="col">JUMLAH BULAN TUNGGAKAN</th>
@@ -48,8 +48,8 @@
             <td><?php echo $data->jenjang; ?></td>
             <td><?php echo $data->status; ?></td>
             <td><?php echo $data->jumlah_bulan; ?></td>
-            <td>Rp. <?php echo $data->bpp_per_bulan; ?></td>
-            <td>Rp. <?php echo $data->total; ?></td>
+            <td><?php echo $data->bpp_per_bulan; ?></td>
+            <td><?php echo $data->total; ?></td>
             <td><?php echo $data->keterangan; ?></td>
             <td><?php echo anchor('admin/edit_bpp/'.$data->nis,'<div class="btn btn-primary btn-sm text-bold">EDIT DATA</div>')?> 
             <?php echo anchor('admin/hapus_bpp/'.$data->nis,'<div class="btn btn-danger btn-sm text-bold">HAPUS DATA</div>')?></td>

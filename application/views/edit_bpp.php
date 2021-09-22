@@ -35,18 +35,18 @@
             <label for="">KELAS</label>
             <select class="form-control selectpicker" data-style="btn-primary" data-size="3" name="kelas" id="kelas" data-live-search="true" required>
                   <option selected value="<?=$data->kelas?>"><?=$data->kelas?></option>
-                  <option value="I">I</option>
-                  <option value="II">II</option>
-                  <option value="III">III</option>
-                  <option value="IV">IV</option>
-                  <option value="V">V</option>
-                  <option value="VI">VI</option>
-                  <option value="VII">VII</option>
-                  <option value="VIII">VIII</option>
-                  <option value="IX">IX</option>
-                  <option value="X">X</option>
-                  <option value="XI">XI</option>
-                  <option value="XII">XII</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
               </select>
           </div>
 
@@ -67,6 +67,7 @@
             <option selected hidden value="<?=$data->status?>"><?=$data->status?></option>
                 <option value="LUNAS">LUNAS</option>
                 <option value="BELUM LUNAS">BELUM LUNAS</option>
+                <option value="-">-</option>
             </select>         
            </div>
 

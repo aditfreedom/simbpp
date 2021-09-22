@@ -71,6 +71,12 @@
   <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable( {
+      "columnDefs": [
+                { "orderable": false,
+                  "render": $.fn.dataTable.render.number( ',', '.', 0, '','' ),
+                  "targets":[7,8],
+                }
+            ],
         dom: 'Bfrtip',
         buttons: [
             {extend:'excel',title: 'Sistem Informasi Manajemen BPP',className: 'btn btn-primary'}, 
@@ -79,6 +85,8 @@ $(document).ready(function() {
         ]
     } );
 } );
+
+
 
 function getJSON(url, data={},) {
 	return JSON.parse($.ajax({
@@ -93,4 +101,23 @@ function getJSON(url, data={},) {
 		}
 	}).responseText);
 }
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#example2').DataTable( {
+      "columnDefs": [
+                { "orderable": false,
+                  "render": $.fn.dataTable.render.number( ',', '.', 0, 'Rp. ','' ),
+                  "targets":[7,8],
+                }
+            ],
+        dom: 'Bfrtip',
+        buttons: [
+            {extend:'excel',title: 'Sistem Informasi Manajemen BPP',className: 'btn btn-primary'}, 
+            {extend:'pdf',title: 'Sistem Informasi Manajemen BPP',className: 'btn btn-primary'}, 
+            {extend:'print',title: 'Sistem Informasi Manajemen BPP',className: 'btn btn-primary'} 
+        ]
+    } );
+} );
 </script>

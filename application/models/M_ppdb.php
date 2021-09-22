@@ -23,7 +23,7 @@ class M_ppdb extends CI_Model
 
     public function tampil_data_bpp()
     {
-        return $this->db->query("SELECT * FROM data");
+        return $this->db->query("SELECT * FROM data ORDER BY kelas + 0 ASC");
     }
 
 

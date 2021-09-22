@@ -4,7 +4,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">DATA TUNGGAKAN RALTIME</h1>
+          <h1 class="m-0 text-dark">DATA TUNGGAKAN REALTIME</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -38,7 +38,7 @@
               $tunggakan_sd1=$data->total;
               $sum+=$tunggakan_sd1;?>
             <?php endforeach;?>
-            <td>Rp. <?=$sum;?></td>
+            <td>Rp. <?=number_format($sum);?></td>
 
           </tr>
 
@@ -51,7 +51,7 @@
               $tunggakan_smp1=$data->total;
               $sum1+=$tunggakan_smp1;?>
             <?php endforeach;?>
-            <td>Rp. <?=$sum1;?></td>
+            <td>Rp. <?=number_format($sum1);?></td>
 
           </tr>
 
@@ -64,7 +64,7 @@
               $tunggakan_sma1=$data->total;
               $sum2+=$tunggakan_sma1;?>
             <?php endforeach;?>
-            <td>Rp. <?=$sum2;?></td>
+            <td>Rp. <?=number_format($sum2);?></td>
 
           </tr>
       </tbody>
