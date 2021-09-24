@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Sep 2021 pada 17.43
--- Versi server: 10.4.18-MariaDB
--- Versi PHP: 7.4.16
+-- Waktu pembuatan: 24 Sep 2021 pada 11.12
+-- Versi server: 10.4.14-MariaDB
+-- Versi PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -800,7 +800,34 @@ INSERT INTO `user` (`id_user`, `nama_user`, `id_kelas`, `username`, `password`, 
 (3, 'SITI DEA SATIFA, S.ST', '0', '10161002', '467b481876db1758d9b38a75aabbccdb', 1),
 (4, 'ADERIANA MASTHURA, S.Si', '1', 'walikelas', 'dcf52f84dbf511ee4a0abcfc18093ee4', 2),
 (5, 'PUTRI MAULIDA, S.Pd.', '1', 'putri', '4093fed663717c843bea100d17fb67c8', 2),
-(8, 'MAINA SARA, M.A.', '0', '11071018', '29422fcab11ad5872e41f0e110d10f41', 1);
+(10, 'ASHIL ULAYYA, S.Pd.', '2', '10206047', '6dc160a474a35785375a9c29111285a8', 2),
+(11, 'CUT HAFSAH, S.Pd', '2', '10081088', '9d50009502f045b7f01f111d2e2536e5', 2),
+(12, 'AMRUL HAKIM, .M.Pd.', '2', '10201001', '8052f165e6716be68da7dbcea1b38df3', 2),
+(13, 'FITRIANI, S.E.', '3', '10206043', '49a8f6c69a4235a5473e0f9ed9e2dc9f', 2),
+(14, 'ARAFAH NUZULA, S.Mat.', '3', '10206045', 'c2ea209067813c41d2979ba081843927', 2),
+(15, 'IKA MEUTIA, S.Si', '4', '10081044', '09dfa3b617b555a9df17e99b40f9db89', 2),
+(16, 'NURUL AULIA, S.Pd.', '4', '10186006', '1b096296451c4edb7800f4cf11ff015a', 2),
+(17, 'NURLAILI S.Si', '5', '10111078', 'e18b3839d8d47f706c01b33062bac141', 2),
+(18, 'NURHILZA, B.Sc, M.A', '5', '10141005', '3e9285464b7e2890bf186db889d8df4b', 2),
+(19, 'DIAN MANYA, S.Pd.', '6', '10206044', '7fd420fb6928690724c945cc7c016786', 2),
+(20, 'MAICHITA MUTIA, S.Pd.', '6', '12141009', '98f946d560339925e5b0e3027d763c32', 2),
+(21, 'DWI WULANDARY, ST, M.A', '7', '10081054', 'aee24833261082600a047b5ab478458a', 2),
+(22, 'BASIRAN, S.Ag, M.A', '7', '10081051', '4c53ca0da8a337cc85f13c6beee2f35c', 2),
+(23, 'MEUTIA HESTI PALDANA, S.Pd', '8', '10151004', '556c48640c368af6f43a861cf738e3c9', 2),
+(24, 'MARDIANA, S.Pd', '8', '10211008', '191d2a9c1235a65edd03e5dfcbfedecf', 2),
+(25, 'AINAL MARDHIAH, S.Pd', '9', '10211006', '96c47985f80db1cb4e2c2a35b330d405', 2),
+(26, 'DHIA RAHMAT, S.Pd., M.Pd.', '9', '10151001', '499855b171ee5626422214dedd2abe64', 2),
+(27, 'MUKHLISANUR, S. Pd', '10', '10121083', 'b22b76f444c7930f3e3fe47ddfba7600', 2),
+(28, 'DESTYA DARSIANA, S.SOS', '10', '10206053', 'a828e1eca5b1d070a10599b5ebe11a5c', 2),
+(29, 'HELMIATI, S.Pd. I', '11', '10061019', 'c4ce452d7140ad81af7dfe82b2caac24', 2),
+(30, 'RAHMI, S.Pd.Gr.', '11', '10211004', '4e86efecd89907872cae4c96c58adcad', 2),
+(31, 'DIAN FERDIANSYAH, M.A', '11', '10141001', '69e3512f7d6ff609c8b727e541e22187', 2),
+(32, 'NURDIANA, S.Pd', '12', '10201003', '5c46f9f1ee5a4d62d352c0ffe3a95ed9', 2),
+(33, 'VERA WAHYUNI, S.Si.', '12', '11161003', '55a61dec5a3418c9268f5f0e96db1aae', 2),
+(34, 'MARINA NOVA WAHYUNI, S.T', '0', '12101107', '63ec5fcb2bd10faa0f09879c1348f80d', 1),
+(35, 'CHANDRA NURMANSYAH, S.Si', '0', '10101064', 'ed42ac8500eef834efb4edc44d3a343d', 1),
+(36, 'KARTIKA HAKIM, S.S., MA', '0', '10151003', '6304847204cc728b80efa8eb1290a69a', 1),
+(37, 'MAINA SARA, M.A.', '0', '11071018', '29422fcab11ad5872e41f0e110d10f41', 1);
 
 --
 -- Indexes for dumped tables
@@ -886,7 +913,7 @@ ALTER TABLE `rombel`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

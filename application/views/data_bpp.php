@@ -22,7 +22,7 @@
     </p>
 
     <table class="table table-hover" id="example">
-      <thead class="text-left">
+      <thead class="text-center">
         <tr>
           <th scope="col">NO</th>
           <th scope="col">NIS</th>
@@ -56,6 +56,66 @@
           </tr>
           <?php $i++; ?>
         <?php endforeach; ?>
+        <tr class="nomor text-center">
+        <?php 
+            $sum=0;
+            foreach ($tunggakan_sd as $data) : 
+              $tunggakan_sd1=$data->total;
+              $sum+=$tunggakan_sd1;?>
+            <?php endforeach;?>
+          <th scope="row"><?=$i?></th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>TOTAL TUNGGAKAN SD</td>
+            <td class="font-weight-bold">Rp. <?=number_format($sum);?></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr class="nomor text-center">
+          <?php 
+            $sum1=0;
+            foreach ($tunggakan_smp as $data) : 
+              $tunggakan_smp1=$data->total;
+              $sum1+=$tunggakan_smp1;?>
+            <?php endforeach;?>
+          <th scope="row"><?=$i?></th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>TOTAL TUNGGAKAN SMP</td>
+            <td class="font-weight-bold">Rp. <?=number_format($sum1);?></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr class="nomor text-center">
+         <?php 
+            $sum2=0;
+            foreach ($tunggakan_sma as $data) : 
+              $tunggakan_sma1=$data->total;
+              $sum2+=$tunggakan_sma1;?>
+            <?php endforeach;?>
+          <th scope="row"><?=$i?></th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>TOTAL TUNGGAKAN SMA</td>
+            <td class="font-weight-bold">Rp. <?=number_format($sum2);?></td>
+            <td></td>
+            <td></td>
+          </tr>
+  
       </tbody>
     </table>
   </div>

@@ -18,46 +18,45 @@
   <!-- /.content-header -->
   <div class="content">
     <p align="left">
-     <a class="btn btn-success font-weight-bold" href="#">TAMBAH DATA</a>
+     <a class="btn btn-success font-weight-bold" href="<?=base_url('admin/tambahpengguna')?>">TAMBAH DATA</a>
     </p>
-
-    <table class="table table-hover" id="example">
+    <table class="table table-hover" id="example3">
       <thead class="text-center">
         <tr>
           <th scope="col">NO</th>
-          <th scope="col">NAMA</th>
-          <th scope="col">WALI KELAS</th>
+          <th scope="col">NAMA USER</th>
+          <th scope="col">KELAS</th>
           <th scope="col">USERNAME</th>
           <th scope="col">ROLE</th>
-          <!-- <th scope="col">AKSI</th> -->
+          <th scope="col">AKSI</th>
         </tr>
       </thead>
       <tbody>
         <?php $i = 1;
         foreach ($pengguna as $data) : 
-        $roledata=$data->role;
+          $roledata=$data->role;
 
-        if ($roledata=="0") {
-          $role="Admin";
-        }elseif ($roledata=="1"){
-          $role="Tata Usaha";
-        }else{
-          $role="Wali Kelas";
-        }
-        ?>
+          if ($roledata=="0") {
+            $role="Admin";
+          }elseif ($roledata=="1"){
+            $role="Tata Usaha/Kepsek";
+          }else{
+            $role="Wali Kelas";
+          }
+          ?>
           <tr class="nomor text-center">
             <th scope="row"><?php echo $i; ?></th>
             <td><?php echo $data->nama_user; ?></td>
-            <td><?php echo $data->kelas; ?></td>
+            <td><?php echo $data->id_kelas; ?></td>
             <td><?php echo $data->username; ?></td>
-            <td><b><?php echo $role; ?></b></td>
-            <!-- <td><?php echo anchor('admin/edit_user/'.$data->id_user,'<div class="btn btn-primary btn-sm text-bold">EDIT DATA</div>')?> 
-            <?php echo anchor('admin/hapus_user/'.$data->id_user,'<div class="btn btn-danger btn-sm text-bold">HAPUS DATA</div>')?></td>
-          </tr> -->
+            <td><a class="btn btn-info font-weight-bold text-light"><?php echo $role; ?></a></td>
+            <td><?php echo anchor('admin/hapus_pengguna/'.$data->id_user,'<div class="btn btn-danger btn-sm text-bold">HAPUS DATA</div>')?></td>
+          </tr>
           <?php $i++; ?>
         <?php endforeach; ?>
       </tbody>
     </table>
+    
   </div>
 </div>
 </div>

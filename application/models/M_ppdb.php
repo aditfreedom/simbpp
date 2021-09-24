@@ -95,6 +95,12 @@ class M_ppdb extends CI_Model
         $this->db->insert('laporan', $data);
     }
 
+    public function insert_pengguna($data)
+    {
+        $this->db->insert('user', $data);
+    }
+
+
     public function insert_biaya($data)
     {
         $this->db->insert('biaya', $data);
@@ -286,6 +292,11 @@ class M_ppdb extends CI_Model
     public function hapususer($id)
     {
         $this->db->delete('data', $id);
+    }
+
+    public function hapus_user($id)
+    {
+        $this->db->delete('user', $id);
     }
 
     public function hapus_sekolah($id)

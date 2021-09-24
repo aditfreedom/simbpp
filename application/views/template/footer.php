@@ -121,3 +121,16 @@ $(document).ready(function() {
     } );
 } );
 </script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#example3').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            {extend:'excel',title: 'Sistem Informasi Manajemen BPP',className: 'btn btn-primary'}, 
+            {extend:'pdf',title: 'Sistem Informasi Manajemen BPP',className: 'btn btn-primary'}, 
+            {extend:'print',title: 'Sistem Informasi Manajemen BPP',className: 'btn btn-primary'} 
+        ]
+    } );
+} );
+</script>

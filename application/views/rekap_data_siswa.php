@@ -22,7 +22,7 @@
     </p>
 
     <table class="table table-hover" id="example2">
-      <thead class="text-left">
+      <thead class="text-center">
         <tr>
           <th scope="col">NO</th>
           <th scope="col">NIS</th>
@@ -39,7 +39,7 @@
       <tbody>
         <?php $i = 1;
         foreach ($siswa as $data) : ?>
-          <tr class="nomor text-left">
+          <tr class="nomor text-center">
             <th scope="row"><?php echo $i; ?></th>
             <td><?php echo $data->nis; ?></td>
             <td><?php echo $data->nama; ?></td>

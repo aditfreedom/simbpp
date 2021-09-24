@@ -70,6 +70,9 @@ class Admin extends CI_Controller {
 	public function data_bpp()
 	{
 		$data['bpp'] = $this->M_ppdb->tampil_data_bpp()->result();
+		$data['tunggakan_sd'] = $this->M_ppdb->tampil_data_tunggakan_sd()->result();
+		$data['tunggakan_smp'] = $this->M_ppdb->tampil_data_tunggakan_smp()->result();
+		$data['tunggakan_sma'] = $this->M_ppdb->tampil_data_tunggakan_sma()->result();
 		$sess_data = $this->session->userdata();
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
@@ -353,10 +356,48 @@ class Admin extends CI_Controller {
 	}
 
 
+	public function tambahpengguna(){
+		$sess_data = $this->session->userdata();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('tambahpengguna');
+		$this->load->view('template/footer');
+	}
+
+	public function insert_pengguna()
+	{
+			$data = array(
+			'nama_user' => $this->input->post('nama_user'),
+			'id_kelas' => $this->input->post('id_kelas'),
+			'username' => $this->input->post('username'),
+			'password' => md5($this->input->post('password')),
+			'role' => $this->input->post('role')
+		);
+	
+			$this->M_ppdb->insert_pengguna($data,'user');
+			$this->load->view('berhasil_pengguna');
+
+	}
+
+	
+	public function hapus_bpp($id){
+		$nis =    array ('nis' => $id);
+		$this->M_ppdb->hapususer($nis,'data');
+		redirect(base_url('admin/data_bpp'));
+	}
+
+	
+	public function hapus_user($id){
+		$id_user =    array ('id_user' => $id);
+		$this->M_ppdb->hapus_user($id_user,'user');
+		redirect(base_url('admin/data_pengguna'));
+	}
 
 
 
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	public function tambahkuota(){
 		$jenis           = $this->input->post('jenis');
@@ -382,11 +423,6 @@ class Admin extends CI_Controller {
 		redirect(base_url('home/kuota'));
 	}
 
-	public function hapus_bpp($id){
-		$nis =    array ('nis' => $id);
-		$this->M_ppdb->hapususer($nis,'data');
-		redirect(base_url('admin/data_bpp'));
-	}
 
 	public function editkuota($id){
 		$sess_data = $this->session->userdata();
