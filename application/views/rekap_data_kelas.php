@@ -24,14 +24,15 @@
     <table class="table table-hover" id="example">
       <thead class="text-center">
         <tr>
-          <th scope="col">KELAS</th>
+          <th scope="col">TINGKAT</th>
         </tr>
       </thead>
       <tbody>
         <?php $i = 1;
         foreach ($kelas as $data) : ?>
           <tr class="nomor text-center">
-            <td><a style="width:30%;" class="btn btn-success font-weight-bold" href="<?=base_url('admin/ambil_siswa/'.$data->kelas)?>"><?=$data->kelas?></a></td>
+            <td><a style="width:30%;" class="btn btn-success font-weight-bold" href="<?=base_url('admin/ambil_rombel/'.$data->kelas)?>"><?=$data->kelas?></a></td>
+            <!-- <td><a style="width:30%;" class="btn btn-success font-weight-bold" href="<?=base_url('admin/ambil_siswa/'.$data->kelas)?>"><?=$data->kelas?></a></td> -->
           </tr>
         <?php endforeach; ?>
       </tbody>

@@ -47,10 +47,10 @@
           <tr class="nomor text-center">
             <th scope="row"><?php echo $i; ?></th>
             <td><?php echo $data->nama_user; ?></td>
-            <td><?php echo $data->id_kelas; ?></td>
+            <td><?php echo $data->rombel; ?></td>
             <td><?php echo $data->username; ?></td>
             <td><a class="btn btn-info font-weight-bold text-light"><?php echo $role; ?></a></td>
-            <td><?php echo anchor('admin/hapus_pengguna/'.$data->id_user,'<div class="btn btn-danger btn-sm text-bold">HAPUS DATA</div>')?></td>
+            <td><?php echo anchor('admin/hapus_user/'.$data->id_user,'<div class="btn btn-danger btn-sm text-bold">HAPUS DATA</div>')?></td>
           </tr>
           <?php $i++; ?>
         <?php endforeach; ?>

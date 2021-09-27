@@ -80,6 +80,9 @@ class Admin extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
+
+
+
 	public function insert_bpp()
 	{
 		$bulan1 = $this->input->post('bulan1');
@@ -102,6 +105,7 @@ class Admin extends CI_Controller {
 			'nis' => $this->input->post('nis'),
 			'nama' => $this->input->post('nama'),
 			'kelas' => $this->input->post('kelas'),
+			'id_rombel' => $this->input->post('id_rombel'),
 			'jenjang' => $this->input->post('jenjang'),
 			'status' => $this->input->post('status'),
 			'keterangan' => $keterangan,
@@ -147,6 +151,7 @@ class Admin extends CI_Controller {
 			'kelas' => $this->input->post('kelas'),
 			'jenjang' => $this->input->post('jenjang'),
 			'kelas' => $this->input->post('kelas'),
+			'id_rombel' => $this->input->post('id_rombel'),
 			'status' => $this->input->post('status'),
 			'keterangan' => $keterangan,
 			'jumlah_bulan' => $this->input->post('jumlah_bulan'),
@@ -165,9 +170,9 @@ class Admin extends CI_Controller {
 
 	public function edit_bpp($id){
 		$sess_data = $this->session->userdata();
-		$nis =    array ('nis' => $id);
-		$data['edit_bpp'] = $this->M_ppdb->edit_bpp($nis)->result();
+		$data['edit_bpp'] = $this->M_ppdb->edit_bpp($id)->result();
 		$data['biaya'] = $this->M_ppdb->tampil_biaya()->result();
+		$data['rombel'] = $this->M_ppdb->tampil_rombel()->result();
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
 		$this->load->view('edit_bpp',$data);
@@ -178,6 +183,7 @@ class Admin extends CI_Controller {
 	public function tambah_bpp(){
 		$sess_data = $this->session->userdata();
 		$data['biaya'] = $this->M_ppdb->tampil_biaya()->result();
+		$data['rombel'] = $this->M_ppdb->tampilrombel()->result();
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
 		$this->load->view('tambah_bpp',$data);
@@ -188,10 +194,10 @@ class Admin extends CI_Controller {
 	public function rekap_data(){
 		$role = $this->session->userdata('role');
 		$sess_data = $this->session->userdata();
-		$id_kelas = $this->session->userdata('id_kelas');
+		$id_rombel = $this->session->userdata('id_rombel');
 		$id_user = $this->session->userdata('id_user');
 		if ($role=="2") {
-			$data['jenjang'] = $this->M_ppdb->tampil_jenjang_walas($id_kelas,$id_user)->result();
+			$data['jenjang'] = $this->M_ppdb->tampil_jenjang_walas($id_rombel,$id_user)->result();
 			$this->load->view('template/header');
 			$this->load->view('template/sidebar_admin_sekolah',$sess_data);
 			$this->load->view('rekap_data',$data);
@@ -209,11 +215,11 @@ class Admin extends CI_Controller {
 	public function ambil_kelas($id){
 		$role = $this->session->userdata('role');
 		$sess_data = $this->session->userdata();
-		$id_kelas = $this->session->userdata('id_kelas');
+		$id_rombel = $this->session->userdata('id_rombel');
 		$id_user = $this->session->userdata('id_user');
 
 		if ($role=="2") {
-			$data['kelas'] = $this->M_ppdb->tampil_kelas_walas($id,$id_kelas,$id_user)->result();
+			$data['kelas'] = $this->M_ppdb->tampil_kelas_walas($id,$id_rombel,$id_user)->result();
 			$this->load->view('template/header');
 			$this->load->view('template/sidebar_admin_sekolah',$sess_data);
 			$this->load->view('rekap_data_kelas',$data);
@@ -224,6 +230,29 @@ class Admin extends CI_Controller {
 			$this->load->view('template/header');
 			$this->load->view('template/sidebar_admin_sekolah',$sess_data);
 			$this->load->view('rekap_data_kelas',$data);
+			$this->load->view('template/footer');
+		}
+
+	}
+
+	public function ambil_rombel($id){
+		$role = $this->session->userdata('role');
+		$sess_data = $this->session->userdata();
+		$id_rombel = $this->session->userdata('id_rombel');
+		$id_user = $this->session->userdata('id_user');
+
+		if ($role=="2") {
+			$data['rombel'] = $this->M_ppdb->tampil_rombel_walas($id,$id_rombel,$id_user)->result();
+			$this->load->view('template/header');
+			$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+			$this->load->view('rekap_data_rombel',$data);
+			$this->load->view('template/footer');
+		}
+		else{
+			$data['rombel'] = $this->M_ppdb->tampil_rombel_id($id)->result();
+			$this->load->view('template/header');
+			$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+			$this->load->view('rekap_data_rombel',$data);
 			$this->load->view('template/footer');
 		}
 
@@ -358,9 +387,10 @@ class Admin extends CI_Controller {
 
 	public function tambahpengguna(){
 		$sess_data = $this->session->userdata();
+		$data['rombel'] = $this->M_ppdb->tampil_rombel()->result();
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
-		$this->load->view('tambahpengguna');
+		$this->load->view('tambahpengguna',$data);
 		$this->load->view('template/footer');
 	}
 
@@ -368,7 +398,7 @@ class Admin extends CI_Controller {
 	{
 			$data = array(
 			'nama_user' => $this->input->post('nama_user'),
-			'id_kelas' => $this->input->post('id_kelas'),
+			'id_rombel' => $this->input->post('id_rombel'),
 			'username' => $this->input->post('username'),
 			'password' => md5($this->input->post('password')),
 			'role' => $this->input->post('role')
@@ -394,7 +424,73 @@ class Admin extends CI_Controller {
 	}
 
 
+	public function data_rombel()
+	{
+		$data['rombel'] = $this->M_ppdb->tampil_data_rombel()->result();
+		$sess_data = $this->session->userdata();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('data_rombel',$data);
+		$this->load->view('template/footer');
+	}
 
+	public function tambah_rombel(){
+		$sess_data = $this->session->userdata();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('tambahrombel');
+		$this->load->view('template/footer');
+	}
+
+	public function insert_rombel()
+	{
+			$data = array(
+			'id_kelas' => $this->input->post('id_kelas'),
+			'rombel' => $this->input->post('rombel')
+		);
+	
+			$this->M_ppdb->insert_rombel($data,'rombel');
+			$this->load->view('berhasil_rombel');
+
+	}
+
+	public function hapus_rombel($id){
+		$id_rombel =    array ('id_rombel' => $id);
+		$this->M_ppdb->hapus_rombel($id_rombel,'rombel');
+		redirect(base_url('admin/data_rombel'));
+	}
+
+	public function edit_rombel($id){
+		$sess_data = $this->session->userdata();
+		$data['edit_rombel'] = $this->M_ppdb->edit_rombel($id)->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('edit_rombel',$data);
+		$this->load->view('template/footer');
+	}
+
+	
+	public function update_rombel(){
+		$id       = $this->input->post('id');
+		$jenis       = $this->input->post('jenis');
+		$kuota        = $this->input->post('kuota');
+		$keterangan        = $this->input->post('keterangan');
+
+	
+		$data = array(
+			'id_kelas' => $this->input->post('id_kelas'),
+			'rombel' => $this->input->post('rombel')
+		);
+	
+		$where = array(
+			'id_rombel' => $this->input->post('id_rombel')
+		);
+	
+		$this->M_ppdb->updaterombel($where,$data,'rombel');
+		$this->load->view('berhasil_rombel_edit');
+	}
+
+		
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

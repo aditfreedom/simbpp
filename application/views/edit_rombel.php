@@ -4,12 +4,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">REKAP DATA</h1>
+          <h1 class="m-0 text-dark">EDIT ROMBEL</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">SIM BPP</a></li>
-            <li class="breadcrumb-item active">Rekap Data</li>
+            <li class="breadcrumb-item active">Rombel</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -17,42 +17,46 @@
   </div>
   <!-- /.content-header -->
   <div class="content">
-    <p align="left" hidden>
-     <a class="btn btn-success font-weight-bold" href="<?=base_url('admin/tambah_bpp')?>">TAMBAH DATA</a>
-    </p>
 
-    <table class="table table-hover" id="example2">
-      <thead class="text-center">
-        <tr>
-          <th scope="col">NO</th>
-          <th scope="col">NIS</th>
-          <th scope="col">NAMA</th>
-          <th scope="col">KELAS</th>
-          <th scope="col">STATUS</th>
-          <th scope="col">JUMLAH BULAN TUNGGAKAN</th>
-          <th scope="col">BPP PER BULAN</th>
-          <th scope="col">TOTAL</th>
-          <th scope="col">KETERANGAN</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php $i = 1;
-        foreach ($siswa as $data) : ?>
-          <tr class="nomor text-center">
-            <th scope="row"><?php echo $i; ?></th>
-            <td><?php echo $data->nis; ?></td>
-            <td><?php echo $data->nama; ?></td>
-            <td><?php echo $data->rombel; ?></td>
-            <td><?php echo $data->status; ?></td>
-            <td><?php echo $data->jumlah_bulan; ?></td>
-            <td><?php echo $data->bpp_per_bulan; ?></td>
-            <td><?php echo $data->total; ?></td>
-            <td><?php echo $data->keterangan; ?></td>
-          </tr>
-          <?php $i++; ?>
-        <?php endforeach; ?>
-      </tbody>
-    </table>
+          <form action="<?=base_url('admin/update_rombel')?>" method="post">
+          <div class="form-group">
+              <label for="">TINGKAT</label>
+              <select class="form-control selectpicker" data-style="btn-primary" data-size="3" name="id_kelas" id="kelas" data-live-search="true" required>
+              <?php foreach ($edit_rombel as $data) : ?>
+                <option selected value="<?=$data->id_kelas?>"><?=$data->kelas?></option>
+                <?php endforeach; ?>  
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+            <label for="">NAMA KELAS</label>
+            <?php foreach ($edit_rombel as $data) : ?>
+            <input type="text" name="rombel" class="form-control" value="<?=$data->rombel?>" required>
+            <?php endforeach; ?>  
+          </div>
+
+          <div class="form-group" hidden>
+            <label for="">ID ROMBEL</label>
+            <?php foreach ($edit_rombel as $data) : ?>
+            <input type="text" name="id_rombel" class="form-control" value="<?=$data->id_rombel?>" required readonly>
+            <?php endforeach; ?>  
+          </div>
+
+           <button type="submit" class="form-control btn btn-info font-weight-bold" id="simpan">SIMPAN</button>
+
+    </form>
   </div>
 </div>
 </div>

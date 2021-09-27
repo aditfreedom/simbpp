@@ -44,6 +44,15 @@
           </li>
 
           <li class="nav-item " <?=$hidden_tu?> <?=$hidden_walas?>>
+            <a href="<?=base_url('admin/data_rombel/');?>" class="nav-link">
+              <i class="nav-icon fa fa-building"></i>
+              <p>
+               Data Kelas
+              </p>
+            </a>
+          </li>         
+
+          <li class="nav-item " <?=$hidden_tu?> <?=$hidden_walas?>>
             <a href="<?=base_url('admin/data_pengguna/');?>" class="nav-link">
               <i class="nav-icon fa fa-user"></i>
               <p>
@@ -60,6 +69,7 @@
               </p>
             </a>
           </li>         
+          
 
           <li class="nav-item " <?=$hidden_walas?>>
             <a href="<?=base_url('admin/data_bpp/');?>" class="nav-link">

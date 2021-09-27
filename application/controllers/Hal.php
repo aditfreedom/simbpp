@@ -32,7 +32,7 @@ class Hal extends CI_Controller {
              if ($ceklogin == 1) {
                  foreach ($cekloginid as $cek) {
                      $id_user = $cek->id_user;
-                     $id_kelas = $cek->id_kelas;
+                     $id_rombel = $cek->id_rombel;
                      $nama_user = $cek->nama_user;
                      $role = $cek->role;
                      $username = $cek->username;
@@ -45,7 +45,7 @@ class Hal extends CI_Controller {
                          'password' => $password,
                          'nama_user' => $nama_user,
                          'id_user' => $id_user,
-                         'id_kelas' => $id_kelas,
+                         'id_rombel' => $id_rombel,
                          'role' => $role,
                          'login' => 'Berhasil'              
                         );

@@ -23,7 +23,14 @@ class M_ppdb extends CI_Model
 
     public function tampil_data_bpp()
     {
-        return $this->db->query("SELECT * FROM data ORDER BY kelas + 0 ASC");
+        return $this->db->query("SELECT * FROM data 
+                                LEFT JOIN rombel ON data.id_rombel = rombel.id_rombel ORDER BY kelas + 0 ASC");
+    }
+
+    public function tampil_data_rombel()
+    {
+        return $this->db->query("SELECT * FROM rombel 
+                                 LEFT JOIN kelas ON rombel.id_kelas = kelas.id_kelas");
     }
 
 
@@ -90,9 +97,19 @@ class M_ppdb extends CI_Model
         $this->db->delete('biaya', $id);
     }
 
+    public function hapus_rombel($id)
+    {
+        $this->db->delete('rombel', $id);
+    }
+
     public function insert_laporan($data)
     {
         $this->db->insert('laporan', $data);
+    }
+
+    public function insert_rombel($data)
+    {
+        $this->db->insert('rombel', $data);
     }
 
     public function insert_pengguna($data)
@@ -171,7 +188,7 @@ class M_ppdb extends CI_Model
     public function tampil_data_users()
     {
         return $this->db->query("SELECT * FROM user
-                                LEFT JOIN kelas ON user.id_kelas = kelas.id_kelas");
+                                LEFT JOIN rombel ON user.id_rombel = rombel.id_rombel");
     }
 
     public function tampil_data_sekolahtujuan($id_pesertadidik)
@@ -309,10 +326,9 @@ class M_ppdb extends CI_Model
         return $this->db->get_where('kuota', $id);
     }
 
-    public function edit_bpp($id)
-    {
-        return $this->db->get_where('data', $id);
-    }
+   
+
+    
 
 
     public function edit_sekolah($id)
@@ -320,11 +336,39 @@ class M_ppdb extends CI_Model
         return $this->db->get_where('pengguna', $id);
     }
 
+    public function edit_bpp($id)
+    {
+       return $this->db->query("SELECT * from data LEFT JOIN 
+                                rombel ON data.id_rombel = rombel.id_rombel where nis='$id'");
+
+    }
+
+    public function tampil_rombel()
+    {
+       return $this->db->query("SELECT * from rombel LEFT JOIN 
+                                kelas ON rombel.id_kelas = kelas.id_kelas");
+
+    }
+
+    public function edit_rombel($id)
+    {
+       return $this->db->query("SELECT * from rombel LEFT JOIN 
+                                kelas ON rombel.id_kelas = kelas.id_kelas where id_rombel='$id'");
+
+    }
+
     public function updatekuota($where, $data)
     {
         $this->db->where($where);
         $this->db->set($data);
         $this->db->update('kuota_siswa');
+    }
+
+    public function updaterombel($where, $data)
+    {
+        $this->db->where($where);
+        $this->db->set($data);
+        $this->db->update('rombel');
     }
 
     public function update_bpp($where, $data,$table)
@@ -391,6 +435,11 @@ class M_ppdb extends CI_Model
                                     WHERE sekolah_tujuan.id_sekolah ='$id_sekolah' AND pengguna.role='2' AND pengguna.status='1'");
         return $query;
     }
+    public function tampilrombel()
+    {
+        $query = $this->db->query("SELECT * from rombel");
+        return $query;
+    }
 
     public function tampilinfolulus()
     {
@@ -404,18 +453,37 @@ class M_ppdb extends CI_Model
         return $query;
     }
 
-    public function tampil_jenjang_walas($id_kelas,$id_user)
+    public function tampil_jenjang_walas($id_rombel,$id_user)
     {
         $query = $this->db->query("SELECT * from user
-                                    LEFT JOIN kelas ON user.id_kelas = kelas.id_kelas 
-                                    LEFT JOIN jenjang ON kelas.id_jenjang = jenjang.id_jenjang WHERE user.id_user='$id_user' AND user.id_kelas='$id_kelas'");
+                                    LEFT JOIN rombel ON user.id_rombel = rombel.id_rombel 
+                                    LEFT JOIN kelas ON rombel.id_kelas = kelas.id_kelas 
+                                    LEFT JOIN jenjang ON kelas.id_jenjang = jenjang.id_jenjang 
+                                    WHERE user.id_user='$id_user'");
         return $query;
     }
 
-    public function tampil_kelas_walas($id,$id_kelas,$id_user)
+    public function tampil_kelas_walas($id,$id_rombel,$id_user)
     {
         $query = $this->db->query("SELECT * from kelas
-                                 LEFT JOIN user ON kelas.id_kelas = user.id_kelas WHERE kelas.id_jenjang='$id' AND kelas.id_kelas='$id_kelas' AND user.id_user='$id_user' ORDER BY kelas.id_kelas ASC");
+                                 LEFT JOIN rombel ON kelas.id_kelas = rombel.id_kelas
+                                 LEFT JOIN user ON rombel.id_rombel = user.id_rombel
+                                 WHERE kelas.id_jenjang='$id' AND user.id_user='$id_user' ORDER BY kelas.id_kelas ASC");
+        return $query;
+    }
+
+    public function tampil_rombel_id($id)
+    {
+        $query = $this->db->query("SELECT * from rombel WHERE id_kelas='$id' ORDER BY id_rombel ASC");
+        return $query;
+    }
+
+    public function tampil_rombel_walas($id,$id_rombel,$id_user)
+    {
+        $query = $this->db->query("SELECT * from rombel 
+                                    LEFT JOIN kelas ON rombel.id_kelas = kelas.id_kelas
+                                    LEFT JOIN user ON rombel.id_rombel = user.id_rombel
+                                    WHERE kelas.id_kelas='$id' AND user.id_rombel='$id_rombel' AND user.id_user='$id_user'  ORDER BY rombel.id_rombel ASC");
         return $query;
     }
 
@@ -429,7 +497,8 @@ class M_ppdb extends CI_Model
 
     public function tampil_siswa($id)
     {
-        $query = $this->db->query("SELECT * from data WHERE kelas='$id' ORDER BY nama ASC");
+        $query = $this->db->query("SELECT * from data 
+                                LEFT JOIN rombel ON data.id_rombel = rombel.id_rombel WHERE data.id_rombel='$id' ORDER BY nama ASC");
         return $query;
     }
 

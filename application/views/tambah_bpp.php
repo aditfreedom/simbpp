@@ -31,7 +31,7 @@
           </div>
 
           <div class="form-group">
-              <label for="">KELAS</label>
+              <label for="">TINGKAT</label>
               <select class="form-control selectpicker" data-style="btn-primary" data-size="3" name="kelas" id="kelas" data-live-search="true" required>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -45,6 +45,15 @@
                   <option value="10">10</option>
                   <option value="11">11</option>
                   <option value="12">12</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label for="">KELAS</label>
+              <select class="form-control selectpicker" data-style="btn-primary" data-size="3" name="id_rombel" id="kelas" data-live-search="true" required>
+              <?php foreach ($rombel as $data) : ?>
+              <option value="<?=$data->id_rombel?>"><?=$data->rombel?></option>
+              <?php endforeach; ?>    
               </select>
           </div>
 
