@@ -58,7 +58,7 @@
           </tr>
           <?php $i++; ?>
         <?php endforeach; ?>
-        <tr class="nomor text-center">
+        <!-- <tr class="nomor text-center">
         <?php 
             $sum=0;
             foreach ($tunggakan_sd as $data) : 
@@ -116,7 +116,7 @@
             <td class="font-weight-bold">Rp. <?=number_format($sum2);?></td>
             <td></td>
             <td></td>
-          </tr>
+          </tr> -->
   
       </tbody>
     </table>
