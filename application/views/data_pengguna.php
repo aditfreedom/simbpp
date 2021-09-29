@@ -1,3 +1,10 @@
+<?php
+  $role=$this->session->userdata('role');
+  $hidden_kepsek="";
+  if ($role=="3") {
+    $hidden_kepsek="hidden";
+  }
+  ?>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <div class="content-header">
@@ -17,7 +24,7 @@
   </div>
   <!-- /.content-header -->
   <div class="content">
-    <p align="left">
+    <p align="left" <?=$hidden_kepsek?>>
      <a class="btn btn-success font-weight-bold" href="<?=base_url('admin/tambahpengguna')?>">TAMBAH DATA</a>
     </p>
     <table class="table table-hover" id="example3">
@@ -28,7 +35,7 @@
           <th scope="col">KELAS</th>
           <th scope="col">USERNAME</th>
           <th scope="col">ROLE</th>
-          <th scope="col">AKSI</th>
+          <th <?=$hidden_kepsek?> scope="col">AKSI</th>
         </tr>
       </thead>
       <tbody>
@@ -39,8 +46,11 @@
           if ($roledata=="0") {
             $role="Admin";
           }elseif ($roledata=="1"){
-            $role="Tata Usaha/Kepsek";
-          }else{
+            $role="Tata Usaha";
+          }elseif ($roledata=="3"){
+            $role="Kepsek";
+          }
+          else{
             $role="Wali Kelas";
           }
           ?>
@@ -50,7 +60,7 @@
             <td><?php echo $data->rombel; ?></td>
             <td><?php echo $data->username; ?></td>
             <td><a class="btn btn-info font-weight-bold text-light"><?php echo $role; ?></a></td>
-            <td><?php echo anchor('admin/hapus_user/'.$data->id_user,'<div class="btn btn-danger btn-sm text-bold">HAPUS DATA</div>')?></td>
+            <td <?=$hidden_kepsek?>><?php echo anchor('admin/hapus_user/'.$data->id_user,'<div class="btn btn-danger btn-sm text-bold">HAPUS DATA</div>')?></td>
           </tr>
           <?php $i++; ?>
         <?php endforeach; ?>

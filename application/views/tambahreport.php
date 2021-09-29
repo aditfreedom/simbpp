@@ -25,8 +25,22 @@
           </div>
 
           <div class="form-group">
-            <label for="">KETERANGAN</label>
-            <input type="text" name="keterangan" class="form-control" required>
+            <label for="">DIVISI</label>
+              <select name="divisi" class="form-control">
+                <option value="SD">SD</option>
+                <option value="SMP">SMP</option>
+                <option value="SMA">SMA</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+            <label for="">JUMLAH TUNGGAKAN</label>
+            <input type="number" name="jumlah_tunggakan" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for="">DATA PER TANGGAL</label>
+            <input type="date" name="keterangan" class="form-control" required>
           </div>
 
            <button type="submit" class="form-control btn btn-info font-weight-bold" id="simpan">UPLOAD LAPORAN</button>

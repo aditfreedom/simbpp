@@ -49,8 +49,9 @@
               <label for="">ROLE</label>
               <select class="form-control selectpicker" data-style="btn-primary" data-size="3" name="role" id="kelas" data-live-search="true" required>
                   <option value="0">ADMIN</option>
-                  <option value="1">TATA USAHA/KEPSEK</option>
+                  <option value="1">TATA USAHA</option>
                   <option value="2">WALI KELAS</option>
+                  <option value="3">KEPSEK</option>
               </select>
           </div>
 

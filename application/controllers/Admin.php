@@ -338,6 +338,8 @@ class Admin extends CI_Controller {
 
 			$data = array(
 			'file_laporan' => $file_laporan,
+			'divisi' => $this->input->post('divisi'),
+			'jumlah_tunggakan' => $this->input->post('jumlah_tunggakan'),
 			'keterangan' => $this->input->post('keterangan')
 		);
 	
@@ -490,6 +492,44 @@ class Admin extends CI_Controller {
 		$this->load->view('berhasil_rombel_edit');
 	}
 
+
+	public function grafiksd()
+	{
+
+		$sess_data 		= $this->session->userdata();
+		$data['grafik'] = $this->M_ppdb->tampil_grafiksd()->result();
+
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('tampil_grafik',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function grafiksmp()
+	{
+
+		$sess_data 		= $this->session->userdata();
+		$data['grafik'] = $this->M_ppdb->tampil_grafiksmp()->result();
+
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('tampil_grafiksmp',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function grafiksma()
+	{
+
+		$sess_data 		= $this->session->userdata();
+		$data['grafik'] = $this->M_ppdb->tampil_grafiksma()->result();
+
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('tampil_grafiksma',$data);
+		$this->load->view('template/footer');
+	}
+
+	
 		
 
 

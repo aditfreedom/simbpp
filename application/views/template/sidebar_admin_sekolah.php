@@ -105,7 +105,38 @@
                Laporan Tunggakan
               </p>
             </a>
-          </li>          
+          </li>            
+
+          <li class="nav-item has-treeview menu-close" <?=$hidden_walas?>>
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-user-check"></i>
+              <p>
+                Grafik <sub class="text-warning">(New)</sub>
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?=base_url('admin/grafiksd');?>" class="nav-link">
+                  <i class="far fa fa-chart-bar nav-icon"></i>
+                  <p>Grafik SD</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?=base_url('admin/grafiksmp');?>" class="nav-link">
+                  <i class="far fa fa-chart-bar nav-icon"></i>
+                  <p>Grafik SMP</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?=base_url('admin/grafiksma');?>" class="nav-link">
+                  <i class="far fa fa-chart-bar nav-icon"></i>
+                  <p>Grafik SMA</p>
+                </a>
+              </li>
+              </ul>
+              </li>       
     
 
           <li class="nav-item">
@@ -121,5 +152,6 @@
       </nav>
       <!-- /.sidebar-menu -->
     </div>
+    
     <!-- /.sidebar -->
   </aside>

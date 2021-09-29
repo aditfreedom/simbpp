@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Sep 2021 pada 17.00
+-- Waktu pembuatan: 29 Sep 2021 pada 23.00
 -- Versi server: 10.4.18-MariaDB
 -- Versi PHP: 7.4.16
 
@@ -754,6 +754,8 @@ INSERT INTO `kelas` (`id_kelas`, `id_jenjang`, `kelas`) VALUES
 CREATE TABLE `laporan` (
   `id_laporan` int(11) NOT NULL,
   `file_laporan` varchar(255) NOT NULL,
+  `divisi` varchar(11) NOT NULL,
+  `jumlah_tunggakan` varchar(20) NOT NULL,
   `keterangan` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -761,8 +763,9 @@ CREATE TABLE `laporan` (
 -- Dumping data untuk tabel `laporan`
 --
 
-INSERT INTO `laporan` (`id_laporan`, `file_laporan`, `keterangan`) VALUES
-(5, 'Sistem_Informasi_Manajemen_BPP_(1)1.xlsx', 'per 26 sept 21');
+INSERT INTO `laporan` (`id_laporan`, `file_laporan`, `divisi`, `jumlah_tunggakan`, `keterangan`) VALUES
+(6, 'DATA_26_SEPT_21.xlsx', 'SMA', '11000000', '2021-09-26'),
+(7, 'DATA_26_SEPT_211.xlsx', 'SMA', '15000000', '2021-09-27');
 
 -- --------------------------------------------------------
 
@@ -855,9 +858,9 @@ INSERT INTO `user` (`id_user`, `nama_user`, `id_rombel`, `username`, `password`,
 (27, 'DIAN FERDIANSYAH, M.A', '27', '10141001', '69e3512f7d6ff609c8b727e541e22187', 2),
 (28, 'NURDIANA, S.Pd', '28', '10201003', '5c46f9f1ee5a4d62d352c0ffe3a95ed9', 2),
 (29, 'VERA WAHYUNI, S.Si.', '29', '11161003', '55a61dec5a3418c9268f5f0e96db1aae', 2),
-(30, 'MARINA NOVA WAHYUNI, S.T', '0', '12101107', '63ec5fcb2bd10faa0f09879c1348f80d', 1),
-(31, 'CHANDRA NURMANSYAH, S.Si', '0', '10101064', 'ed42ac8500eef834efb4edc44d3a343d', 1),
-(32, 'KARTIKA HAKIM, S.S., MA', '0', '10151003', '59648ef7321f9a5522d97b3d22f5ae7f', 1),
+(30, 'MARINA NOVA WAHYUNI, S.T', '0', '12101107', '63ec5fcb2bd10faa0f09879c1348f80d', 3),
+(31, 'CHANDRA NURMANSYAH, S.Si', '0', '10101064', 'ed42ac8500eef834efb4edc44d3a343d', 3),
+(32, 'KARTIKA HAKIM, S.S., MA', '0', '10151003', '59648ef7321f9a5522d97b3d22f5ae7f', 3),
 (33, 'MAINA SARA, M.A.', '0', '11071018', '29422fcab11ad5872e41f0e110d10f41', 1),
 (34, 'ADERIANA MASTHURA, S.Si', '2', '10206046', '67b0508075400b581fd2e6f3a5215cb9', 2),
 (35, 'PUTRI MAULIDA, S.Pd', '1', '10111076', '8e3fe1f2120e645e218e937b2e90a5cc', 2),
@@ -936,7 +939,7 @@ ALTER TABLE `kelas`
 -- AUTO_INCREMENT untuk tabel `laporan`
 --
 ALTER TABLE `laporan`
-  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `rombel`

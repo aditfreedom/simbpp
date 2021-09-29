@@ -1,3 +1,10 @@
+<?php
+  $role=$this->session->userdata('role');
+  $hidden_kepsek="";
+  if ($role=="3") {
+    $hidden_kepsek="hidden";
+  }
+  ?>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <div class="content-header">
@@ -18,7 +25,7 @@
   <!-- /.content-header -->
   <div class="content">
     <p align="left">
-     <a class="btn btn-success font-weight-bold" href="<?=base_url('admin/tambahbiaya')?>">TAMBAH DATA</a>
+     <a <?=$hidden_kepsek?> class="btn btn-success font-weight-bold" href="<?=base_url('admin/tambahbiaya')?>">TAMBAH DATA</a>
     </p>
 
     <table class="table table-hover" id="example">
@@ -26,7 +33,7 @@
         <tr>
           <th scope="col">NOMINAL</th>
           <th scope="col">KETERANGAN</th>
-          <th scope="col">AKSI</th>
+          <th <?=$hidden_kepsek?> scope="col">AKSI</th>
         </tr>
       </thead>
       <tbody>
@@ -35,7 +42,7 @@
           <tr class="nomor text-center">
             <td><?php echo $data->nominal; ?></td>
             <td><?php echo $data->keterangan; ?></td>
-            <td><?php echo anchor('admin/hapus_biaya/'.$data->id_biaya,'<div class="btn btn-danger btn-sm text-bold">HAPUS</div>')?></td>
+            <td <?=$hidden_kepsek?>><?php echo anchor('admin/hapus_biaya/'.$data->id_biaya,'<div class="btn btn-danger btn-sm text-bold">HAPUS</div>')?></td>
           </tr>
         <?php endforeach; ?>
       </tbody>

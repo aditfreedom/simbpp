@@ -1,3 +1,10 @@
+<?php
+  $role=$this->session->userdata('role');
+  $hidden_kepsek="";
+  if ($role=="3") {
+    $hidden_kepsek="hidden";
+  }
+  ?>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <div class="content-header">
@@ -17,7 +24,7 @@
   </div>
   <!-- /.content-header -->
   <div class="content">
-    <p align="left">
+    <p align="left" <?=$hidden_kepsek?>>
      <a class="btn btn-success font-weight-bold" href="<?=base_url('admin/tambah_bpp')?>">TAMBAH DATA</a>
     </p>
 
@@ -35,7 +42,7 @@
           <th scope="col">BPP PER BULAN</th>
           <th scope="col">TOTAL</th>
           <th scope="col">KETERANGAN</th>
-          <th scope="col">AKSI</th>
+          <th scope="col" <?=$hidden_kepsek?>>AKSI</th>
         </tr>
       </thead>
       <tbody>
@@ -53,7 +60,7 @@
             <td><?php echo $data->bpp_per_bulan; ?></td>
             <td><?php echo $data->total; ?></td>
             <td><?php echo $data->keterangan; ?></td>
-            <td><?php echo anchor('admin/edit_bpp/'.$data->nis,'<div class="btn btn-primary btn-sm text-bold">EDIT DATA</div>')?> 
+            <td <?=$hidden_kepsek?>><?php echo anchor('admin/edit_bpp/'.$data->nis,'<div class="btn btn-primary btn-sm text-bold">EDIT DATA</div>')?> 
             <?php echo anchor('admin/hapus_bpp/'.$data->nis,'<div class="btn btn-danger btn-sm text-bold">HAPUS DATA</div>')?></td>
           </tr>
           <?php $i++; ?>

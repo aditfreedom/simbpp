@@ -1,3 +1,10 @@
+<?php
+  $role=$this->session->userdata('role');
+  $hidden_kepsek="";
+  if ($role=="3") {
+    $hidden_kepsek="hidden";
+  }
+  ?>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <div class="content-header">
@@ -17,25 +24,27 @@
   </div>
   <!-- /.content-header -->
   <div class="content">
-    <p align="left">
+    <p align="left" <?=$hidden_kepsek?>>
      <a class="btn btn-success font-weight-bold" href="<?=base_url('admin/tambahreport')?>">TAMBAH DATA</a>
     </p>
 
     <table class="table table-hover" id="example">
       <thead class="text-center">
         <tr>
-          <th scope="col">FILE LAPORAN</th>
-          <th scope="col">KETERANGAN</th>
-          <th scope="col">AKSI</th>
+          <th scope="col">DIVISI</th>
+          <th scope="col">JUMLAH TUNGGAKAN</th>
+          <th scope="col">DATA PER TANGGAL</th>
+          <th scope="col" <?=$hidden_kepsek?>>AKSI</th>
         </tr>
       </thead>
       <tbody>
         <?php 
         foreach ($report as $data) : ?>
           <tr class="nomor text-center">
-            <td><?php echo $data->file_laporan; ?></td>
+            <td><?php echo $data->divisi; ?></td>
+            <td><?php echo $data->jumlah_tunggakan; ?></td>
             <td><?php echo $data->keterangan; ?></td>
-            <td><a class="btn btn-success btn-sm text-bold" href="<?=base_url('asset/laporan/').$data->file_laporan?>">DOWNLOAD LAPORAN</a> 
+            <td <?=$hidden_kepsek?>><a class="btn btn-success btn-sm text-bold" href="<?=base_url('asset/laporan/').$data->file_laporan?>">DOWNLOAD LAPORAN</a> 
             <?php echo anchor('admin/hapus_report/'.$data->id_laporan,'<div class="btn btn-danger btn-sm text-bold">HAPUS LAPORAN</div>')?></td>
           </tr>
         <?php endforeach; ?>

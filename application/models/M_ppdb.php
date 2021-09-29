@@ -27,6 +27,23 @@ class M_ppdb extends CI_Model
                                 LEFT JOIN rombel ON data.id_rombel = rombel.id_rombel ORDER BY kelas + 0 ASC");
     }
 
+
+     public function tampil_grafiksd()
+    {
+        return $this->db->query("SELECT * FROM laporan WHERE divisi='SD'");
+    }
+
+    public function tampil_grafiksma()
+    {
+        return $this->db->query("SELECT * FROM laporan WHERE divisi='SMA'");
+    }
+
+    public function tampil_grafiksmp()
+    {
+        return $this->db->query("SELECT * FROM laporan WHERE divisi='SMP'");
+    }
+
+
     public function tampil_data_rombel()
     {
         return $this->db->query("SELECT * FROM rombel 
