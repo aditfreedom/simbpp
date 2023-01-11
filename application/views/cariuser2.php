@@ -106,7 +106,7 @@
 <div <?=$box;?> class="alert alert-danger" role="alert">
 <b>GAGAL MENCETAK KARTU</b><br>
 <ul><b>
-<li>Mohon maaf kartu ujian belum bisa dicetak. Silahkan melakukan pembayaran BPP hingga bulan Juni 2021.</li>
+<li>Mohon maaf kartu ujian belum bisa dicetak. Silahkan melakukan pembayaran BPP hingga bulan Desember 2021.</li>
 <li>Ananda tidak dapat mengakses E-Learning bila kartu ujian tidak muncul</li>
 <li>Apabila sudah lunas namun belum bisa mencetak kartu ujian, harap menghubungi Bagian tata Usaha untuk melakukan konfirmasi.</li>
 Terima Kasih. </b>
@@ -160,7 +160,7 @@ Terima Kasih. </b>
   <tr>
     <td>&nbsp;KELAS</td>
     <td>:</td>
-    <td colspan="2"><b><?=$data->kelas;?></b></td>
+    <td colspan="2"><b><?=$data->rombel;?></b></td>
   </tr>
   <tr>
     <td></td>
@@ -173,7 +173,7 @@ Terima Kasih. </b>
     <td></td>
     <td></td>
     <td></td>
-    <td>Bireuen, 06 Desember 2021</td>
+    <td>Bireuen, 29 November 2021</td>
   </tr>
   <tr>
     <td></td>

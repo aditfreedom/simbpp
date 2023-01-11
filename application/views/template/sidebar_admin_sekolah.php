@@ -10,11 +10,15 @@
     <?php 
       $hidden_tu="";
       $hidden_walas="";
+      $hidden_kepsek="";
     if ($role=="1") {
         $hidden_tu="hidden";
     }
     if ($role=="2") {
       $hidden_walas="hidden";
+  }
+    if ($role=="3") {
+      $hidden_kepsek="hidden";
   }
     ?>
 
@@ -43,7 +47,7 @@
             </a>
           </li>
 
-          <li class="nav-item " <?=$hidden_tu?> <?=$hidden_walas?>>
+          <li class="nav-item " <?=$hidden_tu?> <?=$hidden_walas?> <?=$hidden_kepsek?>>
             <a href="<?=base_url('admin/data_rombel/');?>" class="nav-link">
               <i class="nav-icon fa fa-building"></i>
               <p>
@@ -52,7 +56,7 @@
             </a>
           </li>         
 
-          <li class="nav-item " <?=$hidden_tu?> <?=$hidden_walas?>>
+          <li class="nav-item " <?=$hidden_tu?> <?=$hidden_walas?> <?=$hidden_kepsek?>>
             <a href="<?=base_url('admin/data_pengguna/');?>" class="nav-link">
               <i class="nav-icon fa fa-user"></i>
               <p>
@@ -61,7 +65,7 @@
             </a>
           </li>         
 
-          <li class="nav-item " <?=$hidden_walas?>>
+          <li class="nav-item " <?=$hidden_walas?> <?=$hidden_kepsek?>>
             <a href="<?=base_url('admin/biaya/');?>" class="nav-link">
               <i class="nav-icon fa fa-money-check-alt"></i>
               <p>

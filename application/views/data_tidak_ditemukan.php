@@ -16,7 +16,7 @@ function jsFunction(){
         'Data tidak ditemukan',
         'error'
 ).then(function() {
-    window.location = "./cari";
+    window.location = "./cari2";
 });
 }
 </script>

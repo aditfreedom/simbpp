@@ -44,7 +44,7 @@ title: {
 },
 
 subtitle: {
-    text: 'Tahun Pelajaran 2021-2022'
+    text: 'Tahun Pelajaran 2022-2023'
 },
 
 yAxis: {

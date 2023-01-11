@@ -60,8 +60,10 @@
             <td><?php echo $data->bpp_per_bulan; ?></td>
             <td><?php echo $data->total; ?></td>
             <td><?php echo $data->keterangan; ?></td>
-            <td <?=$hidden_kepsek?>><?php echo anchor('admin/edit_bpp/'.$data->nis,'<div class="btn btn-primary btn-sm text-bold">EDIT DATA</div>')?> 
-            <?php echo anchor('admin/hapus_bpp/'.$data->nis,'<div class="btn btn-danger btn-sm text-bold">HAPUS DATA</div>')?></td>
+            <td <?=$hidden_kepsek?>><?php echo anchor('admin/edit_bpp/'.$data->nis,'<div class="btn btn-primary btn-sm text-bold">EDIT DATA</div>')?> <br>
+            <?php echo anchor('admin/hapus_bpp/'.$data->nis,'<div class="btn btn-danger btn-sm text-bold">HAPUS DATA</div>')?><br>
+            <a class="btn btn-success btn-sm text-bold" target="_blank" href="<?=base_url('admin/cariuser2/'.$data->nis)?>">CETAK KARTU UTS</a>
+            </td>
           </tr>
           <?php $i++; ?>
         <?php endforeach; ?>

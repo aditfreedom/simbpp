@@ -110,6 +110,7 @@ $(document).ready(function() {
                 { "orderable": false,
                   "render": $.fn.dataTable.render.number( ',', '.', 0, 'Rp. ','' ),
                   "targets":[7,8],
+                  
                 }
             ],
         dom: 'Bfrtip',

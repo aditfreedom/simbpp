@@ -1,63 +1,95 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-  <link href="<?=base_url()?>assets22/img/favicon.png" rel="icon">
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&family=Share+Tech+Mono&family=Varela+Round&display=swap" rel="stylesheet">    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<head>
+	<title>SIM BPP</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="<?=base_url()?>assets22/img/logo.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?=base_url()?>/login_asset/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?=base_url()?>/login_asset/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?=base_url()?>/login_asset/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?=base_url()?>/login_asset/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="<?=base_url()?>/login_asset/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?=base_url()?>/login_asset/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?=base_url()?>/login_asset/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="<?=base_url()?>/login_asset/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?=base_url()?>/login_asset/css/util.css">
+	<link rel="stylesheet" type="text/css" href="<?=base_url()?>/login_asset/css/main.css">
+<!--===============================================================================================-->
+</head>
+<body style="background-color: #666666;">
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" action=<?=base_url('hal/login_aksi')?> method="post">
+					<img class="mx-auto d-block" src="<?=base_url('assets22/img/favicon.png')?>" alt="" srcset="" width="90px" >
+					<span class="login100-form-title p-b-43">
+						SELAMAT DATANG DI SIM BPP<br><p>Silahkan Masuk Untuk Melanjutkan</p>
+					</span>
+					
+					
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" name="username" required>
+						<span class="focus-input100"></span>
+						<span class="label-input100">Username</span>
+					</div>
+					
+					
+					<div class="wrap-input100 validate-input" data-validate="Password is required">
+						<input class="input100" type="password" name="password" required>
+						<span class="focus-input100"></span>
+						<span class="label-input100">Password</span>
+					</div>
+					
+					<div class="flex-sb-m w-full p-t-3 p-b-32">
+						
+					</div>
+			
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'login.css';?>">
-    <script src="https://kit.fontawesome.com/2d7830743a.js" crossorigin="anonymous"></script>
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							LOGIN
+						</button>
+					</div>
+				</form>
 
-    <title>LOGIN SIM BPP</title>
-  </head>
-  <div class="limiter">
-  <body style="background-image: url(<?php echo base_url('assets22/img/bg.jpg');?>);background-size: cover;}">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <div class="card card-signin my-5">
-          <div class="card-body">
-            <img src="<?=base_url()?>assets22/img/favicon.png" class="mx-auto d-block" width="100px">
-            <h6 class="text-center" style="margin-top:5px;"><b>SISTEM INFORMASI MANAJEMEN<br>BPP PESERTA DIDIK<br>SUKMA BANGSA BIREUEN</b></h6><br>
-            <h5 class="text-center"><b>LOGIN ADMIN</b></h5>
+				<div class="login100-more" style="background-image: url('<?=base_url()?>/assets22/img/bg3.jpg');">
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
 
-            <?php echo form_open('hal/login_aksi');?>
-              <div class="form-label-group">
-                <input  name="username" id="inputEmail" class="form-control"  required autofocus>
-                <label for="inputEmail">USERNAME</label>
-              </div>
+	
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
 
-              <div class="form-label-group">
-                <input name="password" type="password" id="inputPassword" class="form-control" required>
-                <label for="inputPassword">PASSWORD</label>
-              </div>
-              <button class="btn btn-lg text-light btn-block text-uppercase font-weight-bold rounded-pill btn-info" type="submit"><b>Login</b></button>
-              <?php echo form_close();?>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-  
-    <script>
-    function myFunction() {
-  var x = document.getElementById("inputPassword");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
-    </script>
-  </body>
+</body>
 </html>

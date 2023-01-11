@@ -24,7 +24,7 @@ class M_ppdb extends CI_Model
     public function tampil_data_bpp()
     {
         return $this->db->query("SELECT * FROM data 
-                                LEFT JOIN rombel ON data.id_rombel = rombel.id_rombel ORDER BY kelas + 0 ASC");
+                                LEFT JOIN rombel ON data.id_rombel = rombel.id_rombel ORDER BY kelas + 0 ASC, rombel ASC");
     }
 
 
@@ -148,7 +148,7 @@ class M_ppdb extends CI_Model
 
     public function tampilsiswa($nisn)
     {
-        return $this->db->query("SELECT * FROM data WHERE nis='$nisn'");
+        return $this->db->query("SELECT * FROM data LEFT JOIN rombel ON data.id_rombel = rombel.id_rombel WHERE nis='$nisn'");
     }
 
     public function tampilsiswa2()

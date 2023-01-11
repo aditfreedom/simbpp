@@ -530,6 +530,15 @@ class Admin extends CI_Controller {
 	}
 
 	
+	public function cariuser2($nisn){
+        $data['cariuser'] = $this->M_ppdb->tampilsiswa($nisn,'datasiswa')->result();
+        if ($data['cariuser']==null) {
+            $this->load->view('data_tidak_ditemukan');    
+        }else {
+            $this->load->view('cetak_kartu_ujian',$data);
+        }
+
+	}
 		
 
 

@@ -75,13 +75,8 @@
     <a href="#" class="btn btn-danger rounded-pill text-left" style="width:100%"><b>ISI NIS UNTUK PROSES CETAK KARTU</b></a><br><br>
     <form action="<?=base_url('hal/cariuser2')?>" method="get">
     <div class="form-group">
-    <label for=""><b>NAMA</b></label>
-        <select class="form-control selectpicker" data-size="1" name="nisn"  data-live-search="true" >
-        <option value="">--CARI NAMA--</option>
-        <?php foreach ($siswa as $data) : ?>
-          <option value="<?=$data->nis?>">(<?=$data->nis?>) <?=$data->nama?> - Kelas <?=$data->kelas?></option>
-          <?php endforeach?>
-              </select>
+    <label for=""><b>NIS</b></label>
+            <input type="text" name="nisn" placeholder="Ketikkan NIS" class="form-control"/>
                     </div>      
         <button type="submit" class="btn btn-primary font-weight-bold btn-block" style="margin-bottom:14px;">CARI DATA</button>
         </form>

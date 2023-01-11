@@ -56,7 +56,7 @@
           </tr>
 
           <tr class="nomor text-center">
-            <th scope="row">2</th>
+            <th scope="row">3</th>
             <td>SMA</td>
             <?php 
             $sum2=0;
