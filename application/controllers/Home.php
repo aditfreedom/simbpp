@@ -9,7 +9,7 @@ class Home extends CI_Controller
 		$datauser = $this->session->userdata('login');
 		if ($datauser != "Berhasil") {
 			$this->session->sess_destroy();
-			redirect(base_url('dinas/login'));
+			redirect(base_url('admin/login'));
 		}
 	}
 

@@ -43,7 +43,7 @@ function tanggal_indo($tanggal)
   <div class="content">
 
 
-    <table class="table table-hover table-bordered" id="example5">
+    <table class="table table-bordered" id="example5">
       <thead class="text-center bg-danger">
         <tr>
           <th scope="col">
@@ -52,27 +52,33 @@ function tanggal_indo($tanggal)
         </tr>
       </thead>
       <tbody>
-        <tr class="nomor text-center">
+        <tr class="nomor text-center bg-white">
           <?php $i = 1;
           $sum = 0;
           foreach ($tunggakan_sd as $data) : ?>
             <?php
-            $date1 = $data->tanggal_bayar;
+            $date1 = date("Y-m-d");
             // $date2 = "2023-11-20";
-            $date2 = date("Y-m-d");
-
+            $date2 = $data->expired;
             $diff = abs(strtotime($date2) - strtotime($date1));
 
             $years = floor($diff / (365 * 60 * 60 * 24));
             $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
             $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
 
-
+            $tanggal_tampil = $months . "." . $days;
+            $tanggal_tampil2 = "";
+            $text_kadaluarsa = "";
+            if ($date1 > $date2) {
+              $tanggal_tampil2 = ceil($tanggal_tampil);
+            } else {
+              $tanggal_tampil2 = "0";
+            }
             ///ambil data jumlah bulan di db untuk ditampilkan bulan otomatis atau tidak
             $jumlah_bulan_db = $data->jumlah_bulan;
             $show_otomatis = "";
             if ($jumlah_bulan_db == null) {
-              $show_otomatis = "$months";
+              $show_otomatis = $tanggal_tampil2;
             } else {
               $show_otomatis = "";
             } ?>
@@ -80,7 +86,7 @@ function tanggal_indo($tanggal)
             <td hidden><?php echo $data->bpp_per_bulan; ?></td>
             <?php
             $biaya = $data->bpp_per_bulan;
-            $total = $months * $biaya;
+            $total = $tanggal_tampil2 * $biaya;
 
             $total_db = $data->total;
             $jumlah_bulan_db = $data->jumlah_bulan;
@@ -89,14 +95,9 @@ function tanggal_indo($tanggal)
             if ($jumlah_bulan_db == null) {
               $total_show = "$total";
             } else {
-              $total_show = "";
+              $total_show = $jumlah_bulan_db*$biaya;
             }
 
-            if ($jumlah_bulan_db == null) {
-              $total_show = "$total";
-            } else {
-              $total_show = "";
-            }
             $result = $total_show;
             $sum += $total_show;
             ?>
@@ -113,7 +114,7 @@ function tanggal_indo($tanggal)
     <br>
     <br>
 
-    <table class="table table-hover table-bordered" id="example5">
+    <table class="table table-bordered" id="example5">
       <thead class="text-center bg-warning">
         <tr>
           <th scope="col">
@@ -122,27 +123,33 @@ function tanggal_indo($tanggal)
         </tr>
       </thead>
       <tbody>
-        <tr class="nomor text-center">
+        <tr class="nomor text-center bg-white">
           <?php $i = 1;
           $sum = 0;
           foreach ($tunggakan_smp as $data) : ?>
             <?php
-            $date1 = $data->tanggal_bayar;
+            $date1 = date("Y-m-d");
             // $date2 = "2023-11-20";
-            $date2 = date("Y-m-d");
-
+            $date2 = $data->expired;
             $diff = abs(strtotime($date2) - strtotime($date1));
 
             $years = floor($diff / (365 * 60 * 60 * 24));
             $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
             $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
 
-
+            $tanggal_tampil = $months . "." . $days;
+            $tanggal_tampil2 = "";
+            $text_kadaluarsa = "";
+            if ($date1 > $date2) {
+              $tanggal_tampil2 = ceil($tanggal_tampil);
+            } else {
+              $tanggal_tampil2 = "0";
+            }
             ///ambil data jumlah bulan di db untuk ditampilkan bulan otomatis atau tidak
             $jumlah_bulan_db = $data->jumlah_bulan;
             $show_otomatis = "";
             if ($jumlah_bulan_db == null) {
-              $show_otomatis = "$months";
+              $show_otomatis = $tanggal_tampil2;
             } else {
               $show_otomatis = "";
             } ?>
@@ -150,7 +157,7 @@ function tanggal_indo($tanggal)
             <td hidden><?php echo $data->bpp_per_bulan; ?></td>
             <?php
             $biaya = $data->bpp_per_bulan;
-            $total = $months * $biaya;
+            $total = $tanggal_tampil2 * $biaya;
 
             $total_db = $data->total;
             $jumlah_bulan_db = $data->jumlah_bulan;
@@ -159,13 +166,7 @@ function tanggal_indo($tanggal)
             if ($jumlah_bulan_db == null) {
               $total_show = "$total";
             } else {
-              $total_show = "";
-            }
-
-            if ($jumlah_bulan_db == null) {
-              $total_show = "$total";
-            } else {
-              $total_show = "";
+              $total_show = $jumlah_bulan_db * $biaya;
             }
             $result = $total_show;
             $sum += $total_show;
@@ -183,7 +184,7 @@ function tanggal_indo($tanggal)
     <br>
     <br>
 
-    <table class="table table-hover table-bordered" id="example5">
+    <table class="table  table-bordered" id="example5">
       <thead class="text-center bg-success">
         <tr>
           <th scope="col">
@@ -192,27 +193,33 @@ function tanggal_indo($tanggal)
         </tr>
       </thead>
       <tbody>
-        <tr class="nomor text-center">
+        <tr class="nomor text-center bg-white">
           <?php $i = 1;
           $sum = 0;
           foreach ($tunggakan_sma as $data) : ?>
             <?php
-            $date1 = $data->tanggal_bayar;
+            $date1 = date("Y-m-d");
             // $date2 = "2023-11-20";
-            $date2 = date("Y-m-d");
-
+            $date2 = $data->expired;
             $diff = abs(strtotime($date2) - strtotime($date1));
 
             $years = floor($diff / (365 * 60 * 60 * 24));
             $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
             $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
 
-
+            $tanggal_tampil = $months . "." . $days;
+            $tanggal_tampil2 = "";
+            $text_kadaluarsa = "";
+            if ($date1 > $date2) {
+              $tanggal_tampil2 = ceil($tanggal_tampil);
+            } else {
+              $tanggal_tampil2 = "0";
+            }
             ///ambil data jumlah bulan di db untuk ditampilkan bulan otomatis atau tidak
             $jumlah_bulan_db = $data->jumlah_bulan;
             $show_otomatis = "";
             if ($jumlah_bulan_db == null) {
-              $show_otomatis = "$months";
+              $show_otomatis = $tanggal_tampil2;
             } else {
               $show_otomatis = "";
             } ?>
@@ -220,7 +227,7 @@ function tanggal_indo($tanggal)
             <td hidden><?php echo $data->bpp_per_bulan; ?></td>
             <?php
             $biaya = $data->bpp_per_bulan;
-            $total = $months * $biaya;
+            $total = $tanggal_tampil2 * $biaya;
 
             $total_db = $data->total;
             $jumlah_bulan_db = $data->jumlah_bulan;
@@ -229,20 +236,16 @@ function tanggal_indo($tanggal)
             if ($jumlah_bulan_db == null) {
               $total_show = "$total";
             } else {
-              $total_show = "";
-            }
-
-            if ($jumlah_bulan_db == null) {
-              $total_show = "$total";
-            } else {
-              $total_show = "";
+              $total_show = $jumlah_bulan_db * $biaya;
             }
             $result = $total_show;
             $sum += $total_show;
             ?>
             <?php $i++; ?>
           <?php endforeach; ?>
-          <td class="font-weight-bold"><h3 class="font-weight-bold"> <?= "Rp. " . number_format($sum) ?></h3></td>
+          <td class="font-weight-bold">
+            <h3 class="font-weight-bold"> <?= "Rp. " . number_format($sum) ?></h3>
+          </td>
         </tr>
       </tbody>
     </table>

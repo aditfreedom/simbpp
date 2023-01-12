@@ -71,12 +71,11 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $('#example').DataTable({
-      "columnDefs": [
-                { "orderable": false,
-                  "render": $.fn.dataTable.render.number( ',', '.', 0, '','' ),
-                  "targets":[8,9],
-                }
-            ],
+      "columnDefs": [{
+        "orderable": false,
+        "render": $.fn.dataTable.render.number(',', '.', 0, '', ''),
+        "targets": [11, 12],
+      }],
       dom: 'Bfrtip',
       buttons: [{
           extend: 'excel',
@@ -96,14 +95,15 @@
       ]
     });
   });
-  </script>
+</script>
 
-  <script type = "text/javascript" >
-    $(document).ready(function() {
-      $('#examples').DataTable({
-        "scrollX": true,
-      });
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#examples').DataTable({
+      "scrollX": true,
+      "ordering": false,
     });
+  });
 </script>
 
 <script type="text/javascript">

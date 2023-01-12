@@ -232,6 +232,7 @@ class Admin extends CI_Controller {
 			'id_rombel' => $this->input->post('id_rombel'),
 			'status' => $this->input->post('status'),
 			'tanggal_bayar' => $this->input->post('tanggal_bayar'),
+			'expired' => $this->input->post('expired'),
 			'keterangan' => $this->input->post('keterangan'),
 			'jumlah_bulan' => $this->input->post('jumlah_bulan_db'),
 			'bpp_per_bulan' => $this->input->post('bpp_per_bulan'),

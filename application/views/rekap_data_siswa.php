@@ -65,27 +65,30 @@ function tanggal_indo($tanggal)
         <?php $i = 1;
         foreach ($siswa as $data) : ?>
           <?php
-              $dates1 = $data->tanggal_bayar;
+              $datess1 = date("Y-m-d");
               // $date2 = "2023-11-20";
-              $dates2 = date("Y-m-d");
-
-              $diffs = abs(strtotime($dates2) - strtotime($dates1));
+              $datess2 = $data->expired;
+              $diffs = abs(strtotime($datess2) - strtotime($datess1));
 
               $yearss = floor($diffs / (365 * 60 * 60 * 24));
               $monthss = floor(($diffs - $yearss * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
               $dayss = floor(($diffs - $yearss * 365 * 60 * 60 * 24 - $monthss * 30 * 60 * 60 * 24) / (60 * 60 * 24));
 
               $jumlah_bulans = $data->jumlah_bulan;
-
-
-              $bg_danger="";
-
-              if (($monthss>0) || ($jumlah_bulans>0)) {
-                $bg_danger = "bg-danger";
+              $tanggaltampils = $months . "." . $days;
+              $tanggaltampils2 = "";
+              if ($date1 > $date2) {
+                $tanggaltampils2 = ceil($tanggaltampils);
+              } else {
+                $tanggaltampils2 = "0";
               }
-
+              if (($tanggaltampils2>0) || ($jumlah_bulans>0)) {
+               $bg_danger = "bg-danger";
+              }else{
+                $bg_danger = "bg-light"; 
+              }
           ?>
-          <tr class="nomor text-center <?=$bg_danger?>">
+          <tr class="nomor text-center">
             <th scope="row"><?php echo $i; ?></th>
             <td><?php echo $data->nis; ?></td>
             <td><?php echo $data->nama; ?></td>
@@ -93,48 +96,51 @@ function tanggal_indo($tanggal)
             <td><?php echo $data->status; ?></td>
             <td><?php echo tanggal_indo($data->tanggal_bayar); ?></td>
             <?php
-            $date1 = $data->tanggal_bayar;
-            // $date2 = "2023-11-20";
-            $date2 = date("Y-m-d");
+              $date1 = date("Y-m-d");
+              // $date2 = "2023-11-20";
+              $date2 = $data->expired;
+              $diff = abs(strtotime($date2) - strtotime($date1));
 
-            $diff = abs(strtotime($date2) - strtotime($date1));
-
-            $years = floor($diff / (365 * 60 * 60 * 24));
-            $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
-            $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+              $years = floor($diff / (365 * 60 * 60 * 24));
+              $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+              $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
 
 
-            ///ambil data jumlah bulan di db untuk ditampilkan bulan otomatis atau tidak
-            $jumlah_bulan_db = $data->jumlah_bulan;
-            $show_otomatis = "";
-            if ($jumlah_bulan_db == null) {
-              $show_otomatis = "$months";
-            } else {
+              $tanggal_tampil = $months . "." . $days;
+              $tanggal_tampil2 = "";
+              $text_kadaluarsa = "";
+              if ($date1 > $date2) {
+                $text_kadaluarsa = "text-danger font-weight-bold";
+                $tanggal_tampil2 = ceil($tanggal_tampil);
+              } else {
+                $tanggal_tampil2 = "0";
+              }
+
+
+          ///ambil data jumlah bulan di db untuk ditampilkan bulan otomatis atau tidak
+              $jumlah_bulan_db = $data->jumlah_bulan;
               $show_otomatis = "";
-            } ?>
+              if ($jumlah_bulan_db == null) {
+                $show_otomatis = $tanggal_tampil2;
+              } else {
+                $show_otomatis = "";
+              }
+
+              $biaya = $data->bpp_per_bulan;
+              $total = (int)$show_otomatis * $biaya;
+
+              $total_db = $data->total;
+              $jumlah_bulan_db = $data->jumlah_bulan;
+              $total_show = "";
+
+              if ($jumlah_bulan_db == null) {
+                $total_show = "$total";
+              } else {
+                $total_show = "";
+              }
+              ?>
             <td><?php echo $data->jumlah_bulan; ?> <?php echo $show_otomatis; ?></td>
             <td><?php echo $data->bpp_per_bulan; ?></td>
-            <?php
-            $biaya = $data->bpp_per_bulan;
-            $total = $months * $biaya;
-
-            $total_db = $data->total;
-            $jumlah_bulan_db = $data->jumlah_bulan;
-            $total_show = "";
-
-            if ($jumlah_bulan_db == null) {
-              $total_show = "$total";
-            } else {
-              $total_show = "";
-            }
-
-            if ($jumlah_bulan_db == null) {
-              $total_show = "$total";
-            } else {
-              $total_show = "";
-            }
-            ?>
-
             <td><?php echo $data->total; ?> <?php echo $total_show; ?></td>
             <td><?php echo $data->keterangan; ?></td>
           </tr>

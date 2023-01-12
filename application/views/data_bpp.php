@@ -89,6 +89,7 @@ function tanggal_indo($tanggal)
           <th scope="col">JENJANG</th>
           <th scope="col" width="200px">STATUS</th>
           <th scope="col">TANGGAL TERAKHIR BAYAR BPP</th>
+          <th scope="col">TANGGAL KADALUARSA</th>
           <th scope="col" class="bg-primary">JUMLAH BULAN TUNGGAKAN (OTOMATIS)</th>
           <th scope="col" class="bg-danger">JUMLAH BULAN TUNGGAKAN (MANUAL)</th>
           <th scope="col" width="200px">BPP PER BULAN</th>
@@ -125,30 +126,50 @@ function tanggal_indo($tanggal)
                   <option value="-">-</option>
                 </select>
               </td>
-              <td><input type="date" name="tanggal_bayar" class="form-control text-center" value="<?= $data->tanggal_bayar ?>" required></td>
               <?php
-              $date1 = $data->tanggal_bayar;
+              $date1 = date("Y-m-d");
               // $date2 = "2023-11-20";
-              $date2 = date("Y-m-d");
-
+              $date2 = $data->expired;
               $diff = abs(strtotime($date2) - strtotime($date1));
-
               $years = floor($diff / (365 * 60 * 60 * 24));
               $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
               $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
-
-
               ///ambil data jumlah bulan di db untuk ditampilkan bulan otomatis atau tidak
+
+              $tanggal_tampil = $months . "." . $days;
+              $tanggal_tampil2="";
+              $text_kadaluarsa = "";
+              if ($date1 > $date2) {
+                $text_kadaluarsa = "text-danger font-weight-bold";
+                $tanggal_tampil2 = ceil($tanggal_tampil);
+              }else{
+                $tanggal_tampil2 = "0";
+              }
+
               $jumlah_bulan_db = $data->jumlah_bulan;
               $show_otomatis = "";
               if ($jumlah_bulan_db == null) {
-                $show_otomatis = "$months";
+                $show_otomatis = $tanggal_tampil2;
               } else {
                 $show_otomatis = "";
               }
+
+              $biaya = $data->bpp_per_bulan;
+              $total = (int)$show_otomatis * $biaya;
+
+              $total_db = $data->total;
+              $jumlah_bulan_db = $data->jumlah_bulan;
+              $total_show = "";
+
+              if ($jumlah_bulan_db == null) {
+                $total_show = "$total";
+              } else {
+                $total_show = "";
+              }
               ?>
-              <td class="bg-primary"><input type="text" name="jumlah_bulan_oto" class="form-control text-center" value="<?= $show_otomatis ?>" /></td>
-              <!-- <td class="bg-primary"><input type="text" name="jumlah_bulan_oto" class="form-control text-center" value="<?= $show_otomatis ?>" /></td> -->
+              <td><input type="date" name="tanggal_bayar" class="form-control text-center" value="<?= $data->tanggal_bayar ?>" required></td>
+              <td><input type="date" name="expired" class="form-control text-center <?=$text_kadaluarsa?>" value="<?= $data->expired ?>" required></td>
+              <td class="bg-primary"><input type="text" name="jumlah_bulan_oto" class="form-control text-center" value="<?= $show_otomatis ?>" ></td>
               <td class="bg-danger"><input type="text" name="jumlah_bulan_db" id="jumlah_bulan_db" class="form-control text-center" value="<?= $data->jumlah_bulan ?>"></td>
               <td><select name="bpp_per_bulan" class="form-control  text-center" id="bpp_per_bulan">
                   <option selected hidden value="<?= $data->bpp_per_bulan ?>"><?= $data->bpp_per_bulan ?></option>
@@ -163,28 +184,12 @@ function tanggal_indo($tanggal)
                   <option value="430000"> 430000</option>
                 </select>
               </td>
-
-              <?php
-              $biaya = $data->bpp_per_bulan;
-              $total = $months * $biaya;
-
-              $total_db = $data->total;
-              $jumlah_bulan_db = $data->jumlah_bulan;
-              $total_show = "";
-
-              if ($jumlah_bulan_db == null) {
-                $total_show = "$total";
-              } else {
-                $total_show = "";
-              }
-              ?>
               <td class="bg-primary"><input type="text" name="total_oto" id="total" class="form-control text-center" value="<?= $total_show ?>"></td>
               <td class="bg-danger"><input type="text" name="total_manual" id="total_manual" class="form-control text-center" value="<?= $data->total ?>"></td>
               <td><textarea name="keterangan" class="form-control text-center" cols="200" rows="2"><?php echo $data->keterangan; ?></textarea></td>
               <td>
                 <button type="submit" class="btn btn-success btn-sm font-weight-bold">UPDATE DATA</button>
             </form> <br>
-            <!-- <a class="mt-1 btn btn-danger text-light font-weight-bold" onclick="total()">HITUNG TOTAL MANUAL</a><br> -->
             </td>
           </tr>
           <?php $i++; ?>

@@ -4,11 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Hal extends CI_Controller {
 
-    function __construct(){
+    function __construct()
+    {
         parent::__construct();
-
-
+        $datauser = $this->session->userdata('login');
+        if ($datauser == "Berhasil") {
+            redirect(base_url('admin'));
+        }
     }
+
 
     public function login()
 	{

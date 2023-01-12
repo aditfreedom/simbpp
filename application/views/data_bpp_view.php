@@ -63,6 +63,7 @@ function tanggal_indo($tanggal)
           <th scope="col">JENJANG</th>
           <th scope="col">STATUS</th>
           <th scope="col">TANGGAL TERAKHIR BAYAR BPP</th>
+          <th scope="col">TANGGAL KADALUARSA</th>
           <th scope="col">JUMLAH BULAN TUNGGAKAN (OTOMATIS)</th>
           <th scope="col">JUMLAH BULAN TUNGGAKAN (MANUAL)</th>
           <th scope="col">BPP PER BULAN</th>
@@ -83,12 +84,10 @@ function tanggal_indo($tanggal)
             <td><?= $data->rombel ?></td>
             <td><?= $data->jenjang ?></td>
             <td><?= $data->status ?></td>
-            <td><?= tanggal_indo($data->tanggal_bayar) ?></td>
             <?php
-            $date1 = $data->tanggal_bayar;
+            $date1 = date("Y-m-d");
             // $date2 = "2023-11-20";
-            $date2 = date("Y-m-d");
-
+            $date2 = $data->expired;
             $diff = abs(strtotime($date2) - strtotime($date1));
 
             $years = floor($diff / (365 * 60 * 60 * 24));
@@ -96,21 +95,27 @@ function tanggal_indo($tanggal)
             $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
 
 
-            ///ambil data jumlah bulan di db untuk ditampilkan bulan otomatis atau tidak
-            $jumlah_bulan_db = $data->jumlah_bulan;
-            $show_otomatis = "";
-            if ($jumlah_bulan_db == null) {
-              $show_otomatis = "$months";
+            $tanggal_tampil = $months . "." . $days;
+            $tanggal_tampil2 = "";
+            $text_kadaluarsa = "";
+            if ($date1 > $date2) {
+              $text_kadaluarsa = "text-danger font-weight-bold";
+              $tanggal_tampil2 = ceil($tanggal_tampil);
             } else {
-              $show_otomatis = "";
+              $tanggal_tampil2 = "0";
             }
-            ?>
-            <td><?= $show_otomatis ?></td>
-            <td><?= $data->jumlah_bulan ?></td>
-            <td><?= $data->bpp_per_bulan ?></td>
-            <?php
+
+          ///ambil data jumlah bulan di db untuk ditampilkan bulan otomatis atau tidak
+          $jumlah_bulan_db = $data->jumlah_bulan;
+          $show_otomatis = "";
+          if ($jumlah_bulan_db == null) {
+            $show_otomatis = $tanggal_tampil2;
+          } else {
+            $show_otomatis = "";
+          }
+
             $biaya = $data->bpp_per_bulan;
-            $total = $months * $biaya;
+            $total = (int)$show_otomatis * $biaya;
 
             $total_db = $data->total;
             $jumlah_bulan_db = $data->jumlah_bulan;
@@ -122,6 +127,11 @@ function tanggal_indo($tanggal)
               $total_show = "";
             }
             ?>
+            <td><?= tanggal_indo($data->tanggal_bayar) ?></td>
+            <td class="<?=$text_kadaluarsa?>"><?= tanggal_indo($data->expired) ?></td>
+            <td><?= $show_otomatis ?></td>
+            <td><?= $data->jumlah_bulan ?></td>
+            <td><?= $data->bpp_per_bulan ?></td>
             <td><?= $total_show ?></td>
             <td><?= $data->total ?></td>
             <td><?= $data->keterangan ?></td>
