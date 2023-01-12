@@ -73,10 +73,27 @@ class Admin extends CI_Controller {
 		$data['tunggakan_sd'] = $this->M_ppdb->tampil_data_tunggakan_sd()->result();
 		$data['tunggakan_smp'] = $this->M_ppdb->tampil_data_tunggakan_smp()->result();
 		$data['tunggakan_sma'] = $this->M_ppdb->tampil_data_tunggakan_sma()->result();
+		$data['biaya'] = $this->M_ppdb->tampil_biaya()->result();
+		$data['rombel'] = $this->M_ppdb->tampil_rombel()->result();
 		$sess_data = $this->session->userdata();
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
 		$this->load->view('data_bpp',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function data_bpp_view()
+	{
+		$data['bpp'] = $this->M_ppdb->tampil_data_bpp()->result();
+		$data['tunggakan_sd'] = $this->M_ppdb->tampil_data_tunggakan_sd()->result();
+		$data['tunggakan_smp'] = $this->M_ppdb->tampil_data_tunggakan_smp()->result();
+		$data['tunggakan_sma'] = $this->M_ppdb->tampil_data_tunggakan_sma()->result();
+		$data['biaya'] = $this->M_ppdb->tampil_biaya()->result();
+		$data['rombel'] = $this->M_ppdb->tampil_rombel()->result();
+		$sess_data = $this->session->userdata();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah', $sess_data);
+		$this->load->view('data_bpp_view', $data);
 		$this->load->view('template/footer');
 	}
 
@@ -166,6 +183,69 @@ class Admin extends CI_Controller {
 	
 		$this->M_ppdb->update_bpp($where,$data,'data');
 		$this->load->view('berhasil_ubah_bpp');
+	}
+
+
+	public function update_bpp_baru()
+	{
+
+
+		// $bulan1 = $this->input->post('bulan1');
+		// $bulan2 = $this->input->post('bulan2');
+		// $tahun1 = $this->input->post('tahun1');
+		// $tahun2 = $this->input->post('tahun2');
+		// $keterangan_tambahan = $this->input->post('keterangan_tambahan');
+
+		// if ($bulan1 == "" && $tahun1 == "") {
+		// 	$setrip = "";
+		// } elseif ($bulan2 == "" && $tahun2 == "") {
+		// 	$setrip = "";
+		// } else {
+		// 	$setrip = "-";
+		// }
+		// $keterangan = $bulan1 . " " . $tahun1 . " " . $setrip . " " . $bulan2 . " " . $tahun2 . "\n" . $keterangan_tambahan;
+
+
+		$bulan_oto = $this->input->post('jumlah_bulan_oto');
+		$bulan_db = $this->input->post('jumlah_bulan_db');
+
+		$bulan_store = "";
+
+		if ((!empty($bulan_oto)) && (!empty($bulan_db))) {
+			$this->session->set_flashdata('msg','Jumlah Bulan Otomatis dan Manual Tidak Boleh Terisi Keduanya');
+			redirect('admin/data_bpp');
+		}
+
+
+
+		$total_oto = $this->input->post('total_oto');
+		$total_manual = $this->input->post('total_manual');
+		$total_store = "";
+
+
+
+		$data = array(
+			'nama' => $this->input->post('nama'),
+			'kelas' => $this->input->post('kelas'),
+			'jenjang' => $this->input->post('jenjang'),
+			'kelas' => $this->input->post('kelas'),
+			'id_rombel' => $this->input->post('id_rombel'),
+			'status' => $this->input->post('status'),
+			'tanggal_bayar' => $this->input->post('tanggal_bayar'),
+			'keterangan' => $this->input->post('keterangan'),
+			'jumlah_bulan' => $this->input->post('jumlah_bulan_db'),
+			'bpp_per_bulan' => $this->input->post('bpp_per_bulan'),
+			'total' => $this->input->post('total_manual')
+		);
+
+
+		$where = array(
+			'nis' => $this->input->post('nis')
+		);
+
+		$this->M_ppdb->update_bpp($where, $data, 'data');
+		$this->session->set_flashdata('scs', 'Edit BPP Sukses');
+		redirect('admin/data_bpp');
 	}
 
 	public function edit_bpp($id){
@@ -281,9 +361,9 @@ class Admin extends CI_Controller {
 	public function tunggakan()
 	{
 		$sess_data = $this->session->userdata();
-		$data['tunggakan_sd'] = $this->M_ppdb->tampil_data_tunggakan_sd()->result();
-		$data['tunggakan_smp'] = $this->M_ppdb->tampil_data_tunggakan_smp()->result();
-		$data['tunggakan_sma'] = $this->M_ppdb->tampil_data_tunggakan_sma()->result();
+		$data['tunggakan_sd'] = $this->M_ppdb->tampil_data_bpp_tunggakan('SD')->result();
+		$data['tunggakan_smp'] = $this->M_ppdb->tampil_data_tunggakan_smp('SMP')->result();
+		$data['tunggakan_sma'] = $this->M_ppdb->tampil_data_tunggakan_sma('SMA')->result();
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
 		$this->load->view('tunggakan',$data);

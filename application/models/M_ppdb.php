@@ -24,8 +24,17 @@ class M_ppdb extends CI_Model
     public function tampil_data_bpp()
     {
         return $this->db->query("SELECT * FROM data 
-                                LEFT JOIN rombel ON data.id_rombel = rombel.id_rombel ORDER BY kelas + 0 ASC, rombel ASC");
+                                LEFT JOIN rombel ON data.id_rombel = rombel.id_rombel ORDER BY kelas + 0 ASC, rombel ASC, nama ASC");
     }
+
+    public function tampil_data_bpp_tunggakan($div)
+    {
+        return $this->db->query("SELECT * FROM data 
+                                LEFT JOIN rombel ON data.id_rombel = rombel.id_rombel 
+                                WHERE data.jenjang='$div'
+                                ORDER BY kelas + 0 ASC, rombel ASC, nama ASC");
+    }
+
 
 
      public function tampil_grafiksd()
@@ -106,7 +115,7 @@ class M_ppdb extends CI_Model
 
     public function tampil_biaya()
     {
-        return $this->db->query("SELECT * FROM biaya");
+        return $this->db->query("SELECT * FROM biaya ORDER BY nominal ASC");
     }
 
     public function hapus_biaya($id)

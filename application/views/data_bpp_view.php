@@ -1,4 +1,12 @@
 <?php
+$role = $this->session->userdata('role');
+$hidden_kepsek = "";
+if ($role == "3") {
+  $hidden_kepsek = "hidden";
+}
+?>
+
+<?php
 function tanggal_indo($tanggal)
 {
   $tgl = explode('-', $tanggal);
@@ -21,19 +29,18 @@ function tanggal_indo($tanggal)
   }
 }
 ?>
-
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">REKAP DATA</h1>
+          <h1 class="m-0 text-dark">DATA BPP SISWA</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">SIM BPP</a></li>
-            <li class="breadcrumb-item active">Rekap Data</li>
+            <li class="breadcrumb-item active">Data BPP</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -41,57 +48,42 @@ function tanggal_indo($tanggal)
   </div>
   <!-- /.content-header -->
   <div class="content">
-    <p align="left" hidden>
+    <p align="left" <?= $hidden_kepsek ?>>
       <a class="btn btn-success font-weight-bold" href="<?= base_url('admin/tambah_bpp') ?>">TAMBAH DATA</a>
     </p>
 
-
-    <table class="table table-hover" id="example5">
+    <table class="table table-hover table-sm" id="example">
       <thead class="text-center bg-dark">
         <tr>
           <th scope="col">NO</th>
           <th scope="col">NIS</th>
           <th scope="col">NAMA</th>
+          <th scope="col">TINGKAT</th>
           <th scope="col">KELAS</th>
+          <th scope="col">JENJANG</th>
           <th scope="col">STATUS</th>
-          <th scope="col">TANGGAL TERAKHIR BAYAR</th>
-          <th scope="col">JUMLAH BULAN TUNGGAKAN</th>
+          <th scope="col">TANGGAL TERAKHIR BAYAR BPP</th>
+          <th scope="col">JUMLAH BULAN TUNGGAKAN (OTOMATIS)</th>
+          <th scope="col">JUMLAH BULAN TUNGGAKAN (MANUAL)</th>
           <th scope="col">BPP PER BULAN</th>
-          <th scope="col">TOTAL</th>
+          <th scope="col">TOTAL OTOMATIS</th>
+          <th scope="col">TOTAL MANUAL</th>
           <th scope="col">KETERANGAN</th>
+          <th scope="col" <?= $hidden_kepsek ?>>AKSI</th>
         </tr>
       </thead>
       <tbody>
         <?php $i = 1;
-        foreach ($siswa as $data) : ?>
-          <?php
-              $dates1 = $data->tanggal_bayar;
-              // $date2 = "2023-11-20";
-              $dates2 = date("Y-m-d");
-
-              $diffs = abs(strtotime($dates2) - strtotime($dates1));
-
-              $yearss = floor($diffs / (365 * 60 * 60 * 24));
-              $monthss = floor(($diffs - $yearss * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
-              $dayss = floor(($diffs - $yearss * 365 * 60 * 60 * 24 - $monthss * 30 * 60 * 60 * 24) / (60 * 60 * 24));
-
-              $jumlah_bulans = $data->jumlah_bulan;
-
-
-              $bg_danger="";
-
-              if (($monthss>0) || ($jumlah_bulans>0)) {
-                $bg_danger = "bg-danger";
-              }
-
-          ?>
-          <tr class="nomor text-center <?=$bg_danger?>">
+        foreach ($bpp as $data) : ?>
+          <tr class="nomor text-center">
             <th scope="row"><?php echo $i; ?></th>
-            <td><?php echo $data->nis; ?></td>
-            <td><?php echo $data->nama; ?></td>
-            <td><?php echo $data->rombel; ?></td>
-            <td><?php echo $data->status; ?></td>
-            <td><?php echo tanggal_indo($data->tanggal_bayar); ?></td>
+            <td><?= $data->nis ?></td>
+            <td><?= $data->nama ?></td>
+            <td><?= $data->kelas ?></td>
+            <td><?= $data->rombel ?></td>
+            <td><?= $data->jenjang ?></td>
+            <td><?= $data->status ?></td>
+            <td><?= tanggal_indo($data->tanggal_bayar) ?></td>
             <?php
             $date1 = $data->tanggal_bayar;
             // $date2 = "2023-11-20";
@@ -111,9 +103,11 @@ function tanggal_indo($tanggal)
               $show_otomatis = "$months";
             } else {
               $show_otomatis = "";
-            } ?>
-            <td><?php echo $data->jumlah_bulan; ?> <?php echo $show_otomatis; ?></td>
-            <td><?php echo $data->bpp_per_bulan; ?></td>
+            }
+            ?>
+            <td><?= $show_otomatis ?></td>
+            <td><?= $data->jumlah_bulan ?></td>
+            <td><?= $data->bpp_per_bulan ?></td>
             <?php
             $biaya = $data->bpp_per_bulan;
             $total = $months * $biaya;
@@ -127,16 +121,15 @@ function tanggal_indo($tanggal)
             } else {
               $total_show = "";
             }
-
-            if ($jumlah_bulan_db == null) {
-              $total_show = "$total";
-            } else {
-              $total_show = "";
-            }
             ?>
-
-            <td><?php echo $data->total; ?> <?php echo $total_show; ?></td>
-            <td><?php echo $data->keterangan; ?></td>
+            <td><?= $total_show ?></td>
+            <td><?= $data->total ?></td>
+            <td><?= $data->keterangan ?></td>
+            <td <?= $hidden_kepsek ?>>
+              <!-- <?php echo anchor('admin/edit_bpp/' . $data->nis, '<div class="btn btn-primary btn-sm text-bold">EDIT DATA</div>') ?> <br> -->
+              <?php echo anchor('admin/hapus_bpp/' . $data->nis, '<div class="btn btn-danger btn-sm text-bold">HAPUS DATA</div>') ?><br>
+              <!-- <a class="btn btn-success btn-sm text-bold" target="_blank" href="<?= base_url('admin/cariuser2/' . $data->nis) ?>">CETAK KARTU UTS</a> -->
+            </td>
           </tr>
           <?php $i++; ?>
         <?php endforeach; ?>

@@ -1,3 +1,27 @@
+<?php
+function tanggal_indo($tanggal)
+{
+  $tgl = explode('-', $tanggal);
+  $bln['01'] = 'Januari';
+  $bln['02'] = 'Februari';
+  $bln['03'] = 'Maret';
+  $bln['04'] = 'April';
+  $bln['05'] = 'Mei';
+  $bln['06'] = 'Juni';
+  $bln['07'] = 'Juli';
+  $bln['08'] = 'Agustus';
+  $bln['09'] = 'September';
+  $bln['10'] = 'Oktober';
+  $bln['11'] = 'November';
+  $bln['12'] = 'Desember';
+  if ($tgl[0] == '0000') {
+    return $tanggal;
+  } else {
+    return $tgl[2] . ' ' . $bln[$tgl[1]] . ' ' . $tgl[0];
+  }
+}
+?>
+
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <div class="content-header">
@@ -19,54 +43,207 @@
   <div class="content">
 
 
-    <table class="table table-hover" id="example">
-      <thead class="text-center">
+    <table class="table table-hover table-bordered" id="example5">
+      <thead class="text-center bg-danger">
         <tr>
-          <th scope="col">NO</th>
-          <th scope="col">DIVISI</th>
-          <th scope="col">TUNGGAKAN</th>
-          <!-- <th scope="col">AKSI</th> -->
+          <th scope="col">
+            <h3 class="font-weight-bold">JUMLAH TUNGGAKAN SD</h3>
+          </th>
         </tr>
       </thead>
       <tbody>
-          <tr class="nomor text-center">
-            <th scope="row">1</th>
-            <td>SD</td>
-            <?php 
-            $sum=0;
-            foreach ($tunggakan_sd as $data) : 
-              $tunggakan_sd1=$data->total;
-              $sum+=$tunggakan_sd1;?>
-            <?php endforeach;?>
-            <td>Rp. <?=number_format($sum);?></td>
+        <tr class="nomor text-center">
+          <?php $i = 1;
+          $sum = 0;
+          foreach ($tunggakan_sd as $data) : ?>
+            <?php
+            $date1 = $data->tanggal_bayar;
+            // $date2 = "2023-11-20";
+            $date2 = date("Y-m-d");
 
-          </tr>
+            $diff = abs(strtotime($date2) - strtotime($date1));
 
-          <tr class="nomor text-center">
-            <th scope="row">2</th>
-            <td>SMP</td>
-            <?php 
-            $sum1=0;
-            foreach ($tunggakan_smp as $data) : 
-              $tunggakan_smp1=$data->total;
-              $sum1+=$tunggakan_smp1;?>
-            <?php endforeach;?>
-            <td>Rp. <?=number_format($sum1);?></td>
+            $years = floor($diff / (365 * 60 * 60 * 24));
+            $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+            $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
 
-          </tr>
 
-          <tr class="nomor text-center">
-            <th scope="row">3</th>
-            <td>SMA</td>
-            <?php 
-            $sum2=0;
-            foreach ($tunggakan_sma as $data) : 
-              $tunggakan_sma1=$data->total;
-              $sum2+=$tunggakan_sma1;?>
-            <?php endforeach;?>
-            <td>Rp. <?=number_format($sum2);?></td>
+            ///ambil data jumlah bulan di db untuk ditampilkan bulan otomatis atau tidak
+            $jumlah_bulan_db = $data->jumlah_bulan;
+            $show_otomatis = "";
+            if ($jumlah_bulan_db == null) {
+              $show_otomatis = "$months";
+            } else {
+              $show_otomatis = "";
+            } ?>
+            <td hidden><?php echo $data->jumlah_bulan; ?> <?php echo $show_otomatis; ?></td>
+            <td hidden><?php echo $data->bpp_per_bulan; ?></td>
+            <?php
+            $biaya = $data->bpp_per_bulan;
+            $total = $months * $biaya;
 
-          </tr>
+            $total_db = $data->total;
+            $jumlah_bulan_db = $data->jumlah_bulan;
+            $total_show = "";
+
+            if ($jumlah_bulan_db == null) {
+              $total_show = "$total";
+            } else {
+              $total_show = "";
+            }
+
+            if ($jumlah_bulan_db == null) {
+              $total_show = "$total";
+            } else {
+              $total_show = "";
+            }
+            $result = $total_show;
+            $sum += $total_show;
+            ?>
+            <?php $i++; ?>
+          <?php endforeach; ?>
+          <td class="font-weight-bold">
+            <h4 class="font-weight-bold"> <?= "Rp. " . number_format($sum) ?></h4>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <br>
+    <br>
+    <br>
+
+    <table class="table table-hover table-bordered" id="example5">
+      <thead class="text-center bg-warning">
+        <tr>
+          <th scope="col">
+            <h3 class="font-weight-bold">JUMLAH TUNGGAKAN SMP</h3>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="nomor text-center">
+          <?php $i = 1;
+          $sum = 0;
+          foreach ($tunggakan_smp as $data) : ?>
+            <?php
+            $date1 = $data->tanggal_bayar;
+            // $date2 = "2023-11-20";
+            $date2 = date("Y-m-d");
+
+            $diff = abs(strtotime($date2) - strtotime($date1));
+
+            $years = floor($diff / (365 * 60 * 60 * 24));
+            $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+            $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+
+
+            ///ambil data jumlah bulan di db untuk ditampilkan bulan otomatis atau tidak
+            $jumlah_bulan_db = $data->jumlah_bulan;
+            $show_otomatis = "";
+            if ($jumlah_bulan_db == null) {
+              $show_otomatis = "$months";
+            } else {
+              $show_otomatis = "";
+            } ?>
+            <td hidden><?php echo $data->jumlah_bulan; ?> <?php echo $show_otomatis; ?></td>
+            <td hidden><?php echo $data->bpp_per_bulan; ?></td>
+            <?php
+            $biaya = $data->bpp_per_bulan;
+            $total = $months * $biaya;
+
+            $total_db = $data->total;
+            $jumlah_bulan_db = $data->jumlah_bulan;
+            $total_show = "";
+
+            if ($jumlah_bulan_db == null) {
+              $total_show = "$total";
+            } else {
+              $total_show = "";
+            }
+
+            if ($jumlah_bulan_db == null) {
+              $total_show = "$total";
+            } else {
+              $total_show = "";
+            }
+            $result = $total_show;
+            $sum += $total_show;
+            ?>
+            <?php $i++; ?>
+          <?php endforeach; ?>
+          <td class="font-weight-bold">
+            <h3 class="font-weight-bold"><?= "Rp. " . number_format($sum) ?></h3>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <br>
+    <br>
+    <br>
+
+    <table class="table table-hover table-bordered" id="example5">
+      <thead class="text-center bg-success">
+        <tr>
+          <th scope="col">
+            <h2 class="font-weight-bold">JUMLAH TUNGGAKAN SMA</h2>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="nomor text-center">
+          <?php $i = 1;
+          $sum = 0;
+          foreach ($tunggakan_sma as $data) : ?>
+            <?php
+            $date1 = $data->tanggal_bayar;
+            // $date2 = "2023-11-20";
+            $date2 = date("Y-m-d");
+
+            $diff = abs(strtotime($date2) - strtotime($date1));
+
+            $years = floor($diff / (365 * 60 * 60 * 24));
+            $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+            $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+
+
+            ///ambil data jumlah bulan di db untuk ditampilkan bulan otomatis atau tidak
+            $jumlah_bulan_db = $data->jumlah_bulan;
+            $show_otomatis = "";
+            if ($jumlah_bulan_db == null) {
+              $show_otomatis = "$months";
+            } else {
+              $show_otomatis = "";
+            } ?>
+            <td hidden><?php echo $data->jumlah_bulan; ?> <?php echo $show_otomatis; ?></td>
+            <td hidden><?php echo $data->bpp_per_bulan; ?></td>
+            <?php
+            $biaya = $data->bpp_per_bulan;
+            $total = $months * $biaya;
+
+            $total_db = $data->total;
+            $jumlah_bulan_db = $data->jumlah_bulan;
+            $total_show = "";
+
+            if ($jumlah_bulan_db == null) {
+              $total_show = "$total";
+            } else {
+              $total_show = "";
+            }
+
+            if ($jumlah_bulan_db == null) {
+              $total_show = "$total";
+            } else {
+              $total_show = "";
+            }
+            $result = $total_show;
+            $sum += $total_show;
+            ?>
+            <?php $i++; ?>
+          <?php endforeach; ?>
+          <td class="font-weight-bold"><h3 class="font-weight-bold"> <?= "Rp. " . number_format($sum) ?></h3></td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -90,7 +267,7 @@
             <label for="">Nama Sekolah</label>
             <select class="form-control selectpicker" data-size="3" name="id_sekolah" id="id_sekolah" data-style="btn-info" data-live-search="true">
               <?php foreach ($kuota2 as $data) : ?>
-                <option value="<?php echo $data->id_sekolah; ?>" data-type="<?=$data->status_sekolah;?>"><?php echo $data->nama_sekolah; ?></option>
+                <option value="<?php echo $data->id_sekolah; ?>" data-type="<?= $data->status_sekolah; ?>"><?php echo $data->nama_sekolah; ?></option>
               <?php endforeach; ?>
             </select>
           </div>
