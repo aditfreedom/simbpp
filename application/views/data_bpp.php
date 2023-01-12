@@ -108,11 +108,11 @@ function tanggal_indo($tanggal)
               </td>
               <td><textarea name="nama" class="form-control text-center" cols="200" rows="2"><?php echo $data->nama; ?></textarea></td>
               <td>
-                <input type="text" name="kelas" class="form-control text-center" value="<?= $data->kelas ?>">
+                <input readonly type="text" name="kelas" class="form-control text-center" value="<?= $data->kelas ?>">
               </td>
               <td>
                 <input type="hidden" name="id_rombel" class="form-control text-center" value="<?= $data->id_rombel ?>">
-                <input type="text" name="rombel" class="form-control text-center" value="<?= $data->rombel ?>">
+                <input readonly type="text" name="rombel" class="form-control text-center" value="<?= $data->rombel ?>">
               </td>
               <td>
                 <input type="text" name="jenjang" class="form-control text-center" value="<?= $data->jenjang ?>">
