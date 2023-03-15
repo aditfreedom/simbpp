@@ -52,7 +52,7 @@ function tanggal_indo($tanggal)
       <a class="btn btn-success font-weight-bold" href="<?= base_url('admin/tambah_bpp') ?>">TAMBAH DATA</a>
     </p>
 
-    <table class="table table-hover table-sm" id="example">
+    <table class="table table-hover table-sm table-responsive-sm" id="examplez">
       <thead class="text-center bg-dark">
         <tr>
           <th scope="col">NO</th>
@@ -136,7 +136,7 @@ function tanggal_indo($tanggal)
             <td><?= $data->total ?></td>
             <td><?= $data->keterangan ?></td>
             <td <?= $hidden_kepsek ?>>
-              <!-- <?php echo anchor('admin/edit_bpp/' . $data->nis, '<div class="btn btn-primary btn-sm text-bold">EDIT DATA</div>') ?> <br> -->
+              <?php echo anchor('admin/edit_bpp/' . $data->nis, '<div class="btn btn-primary btn-sm text-bold">EDIT KELAS</div>') ?> <br>
               <?php echo anchor('admin/hapus_bpp/' . $data->nis, '<div class="btn btn-danger btn-sm text-bold">HAPUS DATA</div>') ?><br>
               <!-- <a class="btn btn-success btn-sm text-bold" target="_blank" href="<?= base_url('admin/cariuser2/' . $data->nis) ?>">CETAK KARTU UTS</a> -->
             </td>
