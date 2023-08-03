@@ -112,6 +112,15 @@
          </li>
 
          <li class="nav-item" <?= $hidden_walas ?>>
+           <a href="<?= base_url('admin/pindahkelas/'); ?>" class="nav-link">
+             <i class="nav-icon fa fa-users"></i>
+             <p>
+               Pindah Kelas
+             </p>
+           </a>
+         </li>
+
+         <li class="nav-item" <?= $hidden_walas ?>>
            <a href="<?= base_url('admin/report/'); ?>" class="nav-link">
              <i class="nav-icon fa fa-upload"></i>
              <p>

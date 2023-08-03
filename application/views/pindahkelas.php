@@ -4,48 +4,45 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">DATA ROMBEL</h1>
+          <h1 class="m-0 text-dark">PINDAH KELAS</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">SIM BPP</a></li>
-            <li class="breadcrumb-item active">Data BPP</li>
+            <li class="breadcrumb-item active">Pindah Kelas</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
   </div>
   <!-- /.content-header -->
-  <div class="content">
-    <p align="left">
-     <a class="btn btn-success font-weight-bold" href="<?=base_url('admin/tambah_rombel')?>">TAMBAH DATA</a>
-    </p>
+  <div class="container">
+    <section class="content">
+      <div class="container-fluid">
 
-    <table class="table table-hover" id="example">
-      <thead class="text-center">
-        <tr>
-          <th scope="col">NO</th>
-          <th scope="col">TINGKAT</th>
-          <th scope="col">ROMBEL</th>
-          <th scope="col">STATUS</th>
-          <th scope="col">AKSI</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php $i = 1;
-        foreach ($rombel as $data) : ?>
-          <tr class="nomor text-center">
-            <th scope="row"><?php echo $i; ?></th>
-            <td><?php echo $data->kelas; ?></td>
-            <td><?php echo $data->rombel; ?></td>
-            <td><?php echo $data->status; ?></td>
-            <td><?php echo anchor('admin/edit_rombel/'.$data->id_rombel,'<div class="btn btn-primary btn-sm text-bold">EDIT DATA</div>')?> 
-            <?php echo anchor('admin/hapus_rombel/'.$data->id_rombel,'<div class="btn btn-danger btn-sm text-bold">HAPUS DATA</div>')?></td>
-          </tr>
-          <?php $i++; ?>
-        <?php endforeach; ?>  
-      </tbody>
-    </table>
+  <form action="<?=base_url('admin/getSiswaFromKelas')?>" method="post">
+    <div class="form-group">
+      <label>Kelas</label>
+      <select name="kelas" class="form-control">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+      </select>
+    </div>
+    <div class="form-group" >
+      <input class="btn btn-success form-control" type="submit" value="Cari">
+    </div>
+  </form>  
+
   </div>
 </div>
 </div>

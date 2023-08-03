@@ -42,6 +42,14 @@
             <input type="text" name="rombel" class="form-control" required>
           </div>
 
+          <div class="form-group">
+              <label for="">STATUS</label>
+              <select class="form-control selectpicker" data-style="btn-primary" data-size="3" name="status" id="kelas" data-live-search="true" required>
+                  <option value="Aktif">Aktif</option>
+                  <option value="Tidak Aktif">Tidak Aktif</option>
+              </select>
+          </div>
+
            <button type="submit" class="form-control btn btn-info font-weight-bold" id="simpan">SIMPAN</button>
 
     </form>

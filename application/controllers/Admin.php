@@ -570,7 +570,8 @@ class Admin extends CI_Controller {
 	{
 			$data = array(
 			'id_kelas' => $this->input->post('id_kelas'),
-			'rombel' => $this->input->post('rombel')
+			'rombel' => $this->input->post('rombel'),
+			'status' => $this->input->post('status')
 		);
 	
 			$this->M_ppdb->insert_rombel($data,'rombel');
@@ -638,6 +639,50 @@ class Admin extends CI_Controller {
 		$this->load->view('tampil_grafiksmp',$data);
 		$this->load->view('template/footer');
 	}
+
+
+	public function pindahkelas()
+	{
+
+		$sess_data 		= $this->session->userdata();
+
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('pindahkelas');
+		$this->load->view('template/footer');
+	}
+
+	public function getSiswaFromKelas()
+	{
+		$sess_data 		= $this->session->userdata();
+		$kelas =  $this->input->post('kelas');
+		$data['siswa'] 	= $this->M_ppdb->getSiswaFromKelas($kelas)->result();
+		$data['kelas'] 	= $this->M_ppdb->getKelasWhereAktif()->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin_sekolah',$sess_data);
+		$this->load->view('pindahkelassiswa',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function updatePindahKelas()
+	{
+		$nis           	= $this->input->post('checked');
+		$kelas   		= $this->input->post('kelas');
+		$id_rombel		= $this->input->post('id_rombel');
+		
+
+		$count = count($nis);
+
+
+		for ($i = 0; $i < $count; $i++) {
+			$datanis = $nis[$i];
+			$this->M_ppdb->updatePindahKelas($datanis,$kelas,$id_rombel);
+		}
+
+		redirect(base_url('admin/pindahkelas'));
+	}
+
+
 
 	public function grafiksma()
 	{

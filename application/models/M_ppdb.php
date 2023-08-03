@@ -56,7 +56,17 @@ class M_ppdb extends CI_Model
     public function tampil_data_rombel()
     {
         return $this->db->query("SELECT * FROM rombel 
-                                 LEFT JOIN kelas ON rombel.id_kelas = kelas.id_kelas");
+                                 LEFT JOIN kelas ON rombel.id_kelas = kelas.id_kelas ORDER BY id_rombel DESC");
+    }
+
+    public function getKelasWhereAktif()
+    {
+        return $this->db->query("SELECT * FROM rombel WHERE status='Aktif'");
+    }
+
+    public function updatePindahKelas($datanis,$kelas,$id_rombel)
+    {
+        return $this->db->query("UPDATE data SET kelas='$kelas',id_rombel='$id_rombel' WHERE NIS ='$datanis'");
     }
 
 
@@ -380,6 +390,14 @@ class M_ppdb extends CI_Model
     {
        return $this->db->query("SELECT * from rombel LEFT JOIN 
                                 kelas ON rombel.id_kelas = kelas.id_kelas where id_rombel='$id'");
+
+    }
+
+    public function getSiswaFromKelas($kelas)
+    {
+       return $this->db->query("SELECT data.nis, data.nama, rombel.rombel FROM data 
+                                LEFT JOIN rombel ON data.id_rombel = rombel.id_rombel
+                                WHERE data.kelas = '$kelas' ORDER BY data.nama ASC");
 
     }
 
